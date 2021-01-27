@@ -1,4 +1,4 @@
-# MicrosoftPowerBIAccessibilityChecker
+# Microsoft Power BI Accessibility Checker
 This repository is for a capstone project at the University of Washington in partnership with Microsoft to make Power BI reports more accessible for people with disabilities.
 
 The end result will be an accessibility checker that Power BI report creators can run to find issues in their report. Eventually, we hope that some of this will be integrated into the report creation process to make accessibility additions seamless and less of an afterthought
