@@ -1,0 +1,15 @@
+// manifest.json
+{
+    "manifest_version": 2,
+
+    "name": "Accessibility Checker for Power BI Web Service Reports",
+    "author": "Rebecca Klein and Erika Sundstrom",
+    "description": "A chrome extension that helps Power BI report creators make their reports more accessible",
+    "version": "1.0",
+    "browser_action": {
+        "default_icon": "diagram.png",
+        "default_popup": "popup.html",
+        "default_title": "Accessibility Checker Power BI"
+    },
+    "permissions": ["storage", "webNavigation", "tabs", "notifications", "activeTab"]
+}
