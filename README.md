@@ -19,6 +19,7 @@ The end result will be an accessibility checker that Power BI report creators ca
 ## What it may include:
 * Check for how interactions may change report
 * Check for data labels turned on and see how many data labels there are (create threshold for when they should be off)
+* Integration with an API to add more generalized tests
 * Specific groups of tests to run
 * Documentation for Microsoft on how the checker can be integrated into the report creation process
 * Documentation for Microsoft on changes they can make to default settings to make all reports more accessible and make the accessibility features more apparent to report creators
