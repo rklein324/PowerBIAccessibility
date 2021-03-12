@@ -2,32 +2,37 @@ body {
   margin: 10px;
   width: 160px;
   height: 130px;
-}
-h3 {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
-  text-align: center;
 }
 button {
   color: white;
   background-color: #4B2E83;
-  width: 80px;
+  width: 100px;
   height: 26px;
   border-radius: 4px;
-  margin-left: 39px;
-  margin-top: 18px;
+  margin-left: 30px;
+  margin-top: 32px;
   border-color: #4B2E83;
 }
 button:hover {
   background: white;
   color: black;
 }
-button:focus {
-  background: white;
-  color: black;
+
+hr {
+  border: 2px solid #4B2E83;
 }
+
 #iconinfo {
-  margin-top: 38px;
+  margin-top: 28px;
   text-align: center;
   font-size: 7px;
+}
+#run {
+  text-decoration: none;
+  color: white;
+}
+#run:hover {
+  color: black;
 }

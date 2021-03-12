@@ -4,13 +4,20 @@ This repository is for a capstone project at the University of Washington in par
 The end result will be an accessibility checker that Power BI report creators can run to find issues in their report. Eventually, we hope that some of this will be integrated into the report creation process to make accessibility additions seamless and less of an afterthought
 
 ## What it will include:
-* code to integrate Microsoft's [Accessibility Insights for Web](https://github.com/microsoft/accessibility-insights-web) open source checker
-* a user interface that allows you to run the checker and recieve a report
-* documentation
+* User interface that allows you to run the checker and receive a list of accessibility issues highlighted within the report
+* **Check for different markers for multiple series (line/area chart)**
+* Suggestions generated for the report creator by the checker and how to implement them
+* Link to additional information or WCAG for particular accessibility issues when the checker is run
+* Check that all charts have titles/axis titles
+* Check that everything has alt text and walk user through everything with alt-text
+* Show user what the current tab order is and explain what tab order is for/why it is important
+* Check for sliders and suggest drop-down menus instead
+* Check for stacked bar/column chart and suggest clustered instead
+* Documentation
 
 ## What it may include:
-* an outline for a feedback form report viewers can use to give suggestions to report creators for making their report more accessible
-* additional tests not included in Microsoft's [Accessibility Insights for Web](https://github.com/microsoft/accessibility-insights-web) application
-* suggestions generated for the report creator by the checker
-* a report for Microsoft on how the checker can be integrated into the report creation process
-* a report for Microsoft on changes they can make to default settings to make all reports more accessible and make the accessibility features more apparent to report creators
+* Check for how interactions may change report
+* Check for data labels turned on and see how many data labels there are (create threshold for when they should be off)
+* Specific groups of tests to run
+* Documentation for Microsoft on how the checker can be integrated into the report creation process
+* Documentation for Microsoft on changes they can make to default settings to make all reports more accessible and make the accessibility features more apparent to report creators

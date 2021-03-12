@@ -4,10 +4,47 @@
         <link rel="stylesheet" type="text/css" href="check.css" />
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-        <title>Accessibility Checker for Power BI Web Service</title>
-        <!-- <script src="../insights.config.js"></script> -->
+        <title>Power BI Accessibility Checker</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     </head>
     <body>
-      <h3>Test</h3>
+      <h3>Accessibility Issues</h3>
+      <div class="dropdown" id = "drpdwn1">
+        <button class="dropbtn" id = "bdrpdwn1" aria-label="Color Contrast Dropdown Information Button">
+          1. Color Contrast &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <i class="fas fa-angle-down" aria-hidden="true"></i>
+        </button>
+        <div class="dropdown-content">
+          <text>Ratio of colors not adequate to meet guidelines, must be 3:1. Change colors for more contrast.</text>
+          <p><a href="https://www.w3.org/WAI/standards-guidelines/wcag/" target="_blank">View more information</a></p>
+        </div>
+      </div>
+      <br></br>
+      <div class="dropdown" id = "drpdwn2">
+        <button class="dropbtn" id = "bdrpdwn2" aria-label="Font Contrast Dropdown Information Button">
+          2. Font Contrast &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <i class="fas fa-angle-down" aria-hidden="true"></i>
+        </button>
+        <div class="dropdown-content">
+          <text>Contrast in fonts not strong enough for readability, must have higher ratio of 4.5:1 for normal text. Increase or decrease text size.</text>
+          <p><a href="https://www.w3.org/WAI/standards-guidelines/wcag/" target="_blank">View more information</a></p>
+        </div>
+      </div>
+      <br></br>
+      <div class="dropdown" id = "drpdwn3">
+        <button class="dropbtn" id = "bdrpdwn3" aria-label="Color Contrast Dropdown Information Button">
+          3. Color Contrast &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <i class="fas fa-angle-down" aria-hidden="true"></i>
+        </button>
+        <div class="dropdown-content">
+          <text>Ratio of colors not adequate to meet guidelines, must be 3:1. Change colors for more contrast.</text>
+          <p><a href="https://www.w3.org/WAI/standards-guidelines/wcag/" target="_blank">View more information</a></p>
+        </div>
+      </div>
+      <br></br>
+      <button id = "runAgainBtn" type = button aria-label="Run Checker Again Button">
+        Run Again
+      </button>
+      <script src="check.js"></script>
   </body>
   </html>
