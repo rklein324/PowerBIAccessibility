@@ -5,14 +5,15 @@ The end result will be an accessibility checker that Power BI report creators ca
 
 ## What it will include:
 * User interface that allows you to run the checker and receive a list of accessibility issues highlighted within the report
-* **Check for different markers for multiple series (line/area chart)**
+* Tests/Checks that will be run on the report (automatic and manual)
+  - **Check for different markers for multiple series (line/area chart)**
+  - Check that all charts have titles/axis titles
+  - Check that everything has alt text and walk user through everything with alt-text
+  - Show user what the current tab order is and explain what tab order is for/why it is important
+  - Check for sliders and suggest drop-down menus instead
+  - Check for stacked bar/column chart and suggest clustered instead
 * Suggestions generated for the report creator by the checker and how to implement them
 * Link to additional information or WCAG for particular accessibility issues when the checker is run
-* Check that all charts have titles/axis titles
-* Check that everything has alt text and walk user through everything with alt-text
-* Show user what the current tab order is and explain what tab order is for/why it is important
-* Check for sliders and suggest drop-down menus instead
-* Check for stacked bar/column chart and suggest clustered instead
 * Documentation
 
 ## What it may include:
