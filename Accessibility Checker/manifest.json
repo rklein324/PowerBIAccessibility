@@ -13,9 +13,13 @@
     },
     "icons": { "16": "diagram.png",
               "48": "diagram.png",
-              "128": "diagram.png" 
+              "128": "diagram.png"
     },
-    "permissions": ["storage", "webNavigation", "tabs", "notifications", "activeTab"],
+    "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content.js"]
+  }],
+    "permissions": ["storage", "webNavigation", "tabs", "notifications", "activeTab", "<all_urls>"],
     "background": {
         "scripts": ["background.js"],
         "persistent": false
