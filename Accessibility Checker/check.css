@@ -12,6 +12,45 @@ h3 {
   margin-top: 8px;
 }
 
+pre {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  margin: 0px;
+  padding: 0px;
+  display: inline-flex;
+}
+
+.issueInfo {
+  font-size: 14px;
+}
+
+.dropdown #upArrow1 {
+  font-size: 16px;
+  position: relative;
+  bottom: 3%;
+  left: 97.5%;
+}
+
+.dropdown #upArrow2 {
+  font-size: 16px;
+  position: relative;
+  bottom: 17%;
+  left: 97.5%;
+}
+
+.dropdown #upArrow3 {
+  font-size: 16px;
+  position: relative;
+  bottom: 3%;
+  left: 97.5%;
+}
+
+i {
+  display:inline-flex;
+  padding-top: 2.5px;
+}
+
+
 #runAgainBtn {
   color: white;
   background-color: #4B2E83;
@@ -28,39 +67,42 @@ h3 {
 }
 
 .dropbtn {
+  text-align: left;
   display: block;
   width: 350px;
-  background-color: white;
+  height: 22px;
   color: black;
-  font-size: 16px;
-  margin-left: 18.2px;
+  margin-left: 16px;
+  padding-left: 10px;
+  padding-right: 10px;
   border: none;
-  border-bottom: 1.5px solid black;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
   outline: none;
+  margin-bottom:  15px;
 }
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
+.error {
+  background-color: #fdc9c9;
 }
 
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  font-size: 16px;
-  display: none;
-  padding: 10px;
-  padding-bottom: 0.5px;
-  background-color: #f1f1f1;
-  min-width: 250px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+.warning {
+  background-color: #fdf1c9;
 }
-
-/* Show the dropdown menu on hover */
-.active .dropdown-content {display: block;}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .active .dropbtn {
-  background-color: lightgray;
+  text-align: left;
+  width: 350px;
+  height: 135px;
+}
+
+.active .error {
+  border: 1.5px solid black;
+  border-color: #fa8072;
+}
+
+.active .warning {
+  border: 1.5px solid black;
+  border-color: #f8d568;
 }
