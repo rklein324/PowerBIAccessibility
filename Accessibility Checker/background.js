@@ -6,5 +6,12 @@ function doStuffWithDom(domContent) {
 chrome.browserAction.onClicked.addListener(function(activeTab)
 {
   chrome.tabs.sendMessage(activeTab.id, {text: "report_back"}, doStuffWithDom);
-  chrome.windows.create({url: "popup.html", type: "popup", height: 250, width: 200, left: 940, top: 65});
+
+  var w = 200;
+  var h = 250;
+  var left = (screen.width/2) + (screen.width/4);
+  var top = (screen.height/10);
+
+  chrome.windows.create({url: 'popup.html', 'type': 'popup', 'width': w, 'height': h, 'left': left, 'top': top} , function(window) {
+  });
 });

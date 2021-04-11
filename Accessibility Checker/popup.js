@@ -2,6 +2,13 @@ window.onload = function () {
     btn = document.getElementById("runbtn");
     btn.addEventListener('click', function() {
       window.top.close();
-      chrome.windows.create({url: "check.html", type: "popup", height: 320, width: 420, left: 500, top: 450});
+
+      var w = 420;
+      var h = 320;
+      var left = (screen.width/2 - w/2);
+      var top = (screen.height);
+
+      chrome.windows.create({url: 'check.html', 'type': 'popup', 'width': w, 'height': h, 'left': left, 'top': top} , function(window) {
+      });
     });
 }
