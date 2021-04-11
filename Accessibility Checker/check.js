@@ -1,4 +1,21 @@
+// will hold the results of the test
+var results = {}
+
 window.onload = function () {
+  // gets the most recent active tab that is not the popup,
+  // passes that to content.js, gets the DOM as a string and converts it to a DOM element
+  // runs tests and stores in 'results'
+  chrome.tabs.query({active: true, currentWindow: false}, function(tabs) {
+    chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "report_back"}, function(html) {
+      html = html.trim();
+      template = document.createElement('template');
+      template.innerHTML = html;
+      results.seriesMarkers = testSeriesMarkers(template.content);
+      results.stacked = testStacked(template.content);
+      console.log(results);
+    });
+  });
+
     btn = document.getElementById("runAgainBtn");
     btn.addEventListener('click', function() {
       window.top.close();

@@ -4,11 +4,11 @@
   CHART SELECTORS
 ------------------*/
 
-const allChartsSelector = '.visual-barChart, .visual-columnChart, .visual-clusteredBarChart, .visual-clusteredColumnChart, .visual-hundredPercentStackedBarChart, .visual-hundredPercentStackedColumnChart, .visual-lineChart, .visual-areaChart, .visual-stackedAreaChart, .visual-lineStackedColumnComboChart, .visual-lineClusteredColumnComboChart, .visual-ribbonChart, .visual-waterfallChart, .visual-funnel .visual-scatterChart, .visual-pieChart, .visual-donutChart, .visual-treemap'
+const allChartsSelector = '.visual-barChart, .visual-columnChart, .visual-clusteredBarChart, .visual-clusteredColumnChart, .visual-hundredPercentStackedBarChart, .visual-hundredPercentStackedColumnChart, .visual-lineChart, .visual-areaChart, .visual-stackedAreaChart, .visual-lineStackedColumnComboChart, .visual-lineClusteredColumnComboChart, .visual-ribbonChart, .visual-waterfallChart, .visual-funnel .visual-scatterChart, .visual-pieChart, .visual-donutChart, .visual-treemap';
 
-const seriesChartsSelector = '.visual-lineChart, .visual-areaChart, .visual-stackedAreaChart, .visual-lineStackedColumnComboChart, .visual-lineClusteredColumnComboChart, .visual-scatterChart'
+const seriesChartsSelector = '.visual-lineChart, .visual-areaChart, .visual-stackedAreaChart, .visual-lineStackedColumnComboChart, .visual-lineClusteredColumnComboChart, .visual-scatterChart';
 
-const stackedChartsSelector = '.visual-barChart, .visual-columnChart, .visual-hundredPercentStackedBarChart, .visual-hundredPercentStackedColumnChart, .visual-lineStackedColumnComboChart, .visual-stackedAreaChart'
+const stackedChartsSelector = '.visual-barChart, .visual-columnChart, .visual-hundredPercentStackedBarChart, .visual-hundredPercentStackedColumnChart, .visual-lineStackedColumnComboChart, .visual-stackedAreaChart';
 
 /*------------------
  CHART DICTIONARIES
@@ -37,7 +37,7 @@ const classToName = {
     'visual-pieChart': 'Pie Chart',
     'visual-donutChart': 'Donut Chart',
     'visual-treemap': 'Treemap'
-}
+};
 
 /*
 Key: class names of every chart that includes a stacked element
@@ -50,7 +50,7 @@ const stackedToClustered = {
     'visual-hundredPercentStackedColumnChart': 'visual-clusteredColumnChart',
     'visual-lineStackedColumnComboChart': 'visual-lineClusteredColumnComboChart',
     'visual-stackedAreaChart': 'visual-areaChart'
-}
+};
 
 /*-----------------------------------
  FUNCTIONS TO RETURN SPECIFIC CHARTS
@@ -59,24 +59,24 @@ const stackedToClustered = {
 /*
 returns a list of all charts in the document
 */
-function selectCharts() {
-    let charts = document.querySelectorAll(allChartsSelector)
-    return charts
+function selectCharts(dom) {
+    let charts = dom.querySelectorAll(allChartsSelector);
+    return charts;
 }
 
 /*
 returns a list of all charts that may have multiple series needing markers
 */
-function selectSeriesCharts() {
-    let charts = document.querySelectorAll(seriesChartsSelector);
+function selectSeriesCharts(dom) {
+    let charts = dom.querySelectorAll(seriesChartsSelector);
     return charts;
 }
 
 /*
 returns a list of all charts that includes a stacked element
 */
-function selectStackedCharts() {
-    let charts = document.querySelectorAll(stackedChartsSelector);
+function selectStackedCharts(dom) {
+    let charts = dom.querySelectorAll(stackedChartsSelector);
     return charts;
 }
 
@@ -98,7 +98,6 @@ function seriesMarkersDifferent(chart) {
         markers.forEach(marker => {
             shapes.push(marker.querySelector("path").getAttribute('d'));
         }); 
-        document.querySelector('#testArea').innerHTML = new Set(shapes).size;
         return (new Set(shapes)).size == shapes.length;
     } else {
         return "no markers";
@@ -124,20 +123,18 @@ function checkStacked(chart) {
   DISPLAY RESULTS
 -----------------*/
 
-function testSeriesMarkers() {
+function testSeriesMarkers(dom) {
     let results = []
-    selectSeriesCharts().forEach(chart => {
-        results.push(seriesMarkersDifferent(chart));
+    selectSeriesCharts(dom).forEach(chart => {
+        results.push({chart: chart, result: seriesMarkersDifferent(chart)});
     })
-    document.querySelector('#testArea').innerHTML = results;
+    return results;
 }
 
-function testStacked() {
+function testStacked(dom) {
     let results = []
-    selectStackedCharts().forEach(chart => {
-        results.push(classToName[checkStacked(chart)]);
+    selectStackedCharts(dom).forEach(chart => {
+        results.push({chart: chart, result: classToName[checkStacked(chart)]});
     })
-    document.querySelector('#testArea').innerHTML = results;
+    return results;
 }
-
-testStacked()
