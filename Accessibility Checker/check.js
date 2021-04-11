@@ -1,4 +1,4 @@
-// will hold the results of the test
+// will hold the results of the tests
 var results = {}
 
 window.onload = function () {
@@ -10,8 +10,7 @@ window.onload = function () {
       html = html.trim();
       template = document.createElement('template');
       template.innerHTML = html;
-      results.seriesMarkers = testSeriesMarkers(template.content);
-      results.stacked = testStacked(template.content);
+      results = runTests(template.content);
       console.log(results);
     });
   });

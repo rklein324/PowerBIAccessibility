@@ -98,9 +98,12 @@ function seriesMarkersDifferent(chart) {
         markers.forEach(marker => {
             shapes.push(marker.querySelector("path").getAttribute('d'));
         }); 
-        return (new Set(shapes)).size == shapes.length;
+        if ((new Set(shapes)).size != shapes.length) {
+            return "Markers are the same"
+        }
+        return false
     } else {
-        return "no markers";
+        return "Markers are not used";
     }
 }
 
@@ -126,7 +129,11 @@ function checkStacked(chart) {
 function testSeriesMarkers(dom) {
     let results = []
     selectSeriesCharts(dom).forEach(chart => {
-        results.push({chart: chart, result: seriesMarkersDifferent(chart)});
+        let title = chart.closest('visual-container-modern').querySelector('.visualTitle').title;
+        let result = seriesMarkersDifferent(chart);
+        if (result) {
+            results.push({chart: title, result: result});
+        }
     })
     return results;
 }
@@ -134,7 +141,18 @@ function testSeriesMarkers(dom) {
 function testStacked(dom) {
     let results = []
     selectStackedCharts(dom).forEach(chart => {
-        results.push({chart: chart, result: classToName[checkStacked(chart)]});
+        let title = chart.closest('visual-container-modern').querySelector('.visualTitle').title;
+        let result = checkStacked(chart);
+        if (result) {
+            results.push({chart: title, result: "Suggestion: use " + classToName[result]});
+        }
     })
     return results;
+}
+
+function runTests(dom) {
+    let results = {}
+    results.seriesMarkers = testSeriesMarkers(dom);
+    results.stacked = testStacked(dom);
+    return results
 }
