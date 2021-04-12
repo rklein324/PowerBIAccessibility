@@ -8,12 +8,12 @@
     "description": "A chrome extension that helps Power BI report creators make their reports more accessible",
     "version": "1.0",
     "browser_action": {
-        "default_icon": "diagram.png",
+        "default_icon": "capstonelogocolors.png",
         "default_title": "Accessibility Checker Power BI"
     },
-    "icons": { "16": "diagram.png",
-              "48": "diagram.png",
-              "128": "diagram.png"
+    "icons": { "16": "capstonelogocolors.png",
+              "48": "capstonelogocolors.png",
+              "128": "capstonelogocolors.png"
     },
     "content_scripts": [{
     "matches": ["<all_urls>"],

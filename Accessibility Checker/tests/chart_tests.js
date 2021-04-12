@@ -84,7 +84,7 @@ function selectStackedCharts(dom) {
   CHART TESTS
 --------------*/
 
-/* 
+/*
 checks if chart has markers
 if it does not, returns 'no markers'
 if it does, checks that each marker used is unique
@@ -97,7 +97,7 @@ function seriesMarkersDifferent(chart) {
         let shapes = [];
         markers.forEach(marker => {
             shapes.push(marker.querySelector("path").getAttribute('d'));
-        }); 
+        });
         if ((new Set(shapes)).size != shapes.length) {
             return "Markers are the same"
         }
@@ -107,7 +107,7 @@ function seriesMarkersDifferent(chart) {
     }
 }
 
-/* 
+/*
 checks if chart is a stacked bar/column chart
 if it is, returns the class name of the recommended chart to replace it with
 if it is not, returns false
@@ -144,7 +144,7 @@ function testStacked(dom) {
         let title = chart.closest('visual-container-modern').querySelector('.visualTitle').title;
         let result = checkStacked(chart);
         if (result) {
-            results.push({chart: title, result: "Suggestion: use " + classToName[result]});
+            results.push({chart: title, result: "Use " + classToName[result]});
         }
     })
     return results;

@@ -15,14 +15,21 @@ window.onload = function () {
       results.seriesMarkers.forEach(issue => {
         issueArea.appendChild(createIssue(issue.result, "series should have different markers", "Series Markers Dropdown Information Button", "warning", "https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#markers"))
       });
-    
+
       results.stacked.forEach(issue => {
         issueArea.appendChild(createIssue(issue.result, "should use clustered over stacked", "Stacked Chart Dropdown Information Button", "warning", "https://eagereyes.org/techniques/stacked-bars-are-the-worst"))
       });
     });
   });
 
-    /* btn = document.getElementById("runAgainBtn");
+  btn = document.getElementById("runAgainBtn");
+  btn.addEventListener('click', function() {
+    window.top.close();
+    chrome.windows.create({url: "popup.html", type: "popup", height: 250, width: 200, left: 940, top: 65});
+  });
+
+    /*
+    btn = document.getElementById("runAgainBtn");
     btn.addEventListener('click', function() {
       window.top.close();
       chrome.windows.create({url: "popup.html", type: "popup", height: 250, width: 200, left: 940, top: 65});
@@ -79,38 +86,50 @@ function toggleActive(element) {
     element.classList.toggle("active");
 }
 
-function drpdwnButton(btn, pre, icon, text, link, arrow) {
-  //pre.removeChild(pre.children[0]);
+function drpdwnButton(btn, icon, text, link, arrow) {
+  btn.removeChild(btn.lastChild);
 
   let t = document.createElement("text");
   let p = document.createElement("p");
   let a = document.createElement("a");
+  let i = document.createElement("i");
+  let b = document.createElement("button");
   //let i = document.createElement("i");
   //let pre2 = document.createElement("pre2");
 
   t.textContent = text;
   t.setAttribute("class", "issueInfo");
-  a.innerHTML = "View more information";
-  a.setAttribute("href", link);
-  a.setAttribute("target", "_blank");
-  btn.firstChild.children[2].setAttribute("class", "fas fa-angle-up");
-  //i.setAttribute("aria-hidden", "true");
-  //i.setAttribute("id", arrow);
+  i.setAttribute("class", "fas fa-angle-up" + " " + arrow);
+  i.setAttribute("aria-hidden", "true");
+  b.setAttribute("type", "button");
+  b.setAttribute("id", "linkBtn");
+  b.textContent = "More Information";
+  p.setAttribute("class", "issueInfo");
+
+  b.addEventListener('click', function() {
+    location.href = link;
+  });
 
   p.appendChild(t);
-  p.appendChild(a);
+  b.appendChild(a);
+  p.appendChild(b);
   btn.appendChild(p);
-  //btn.appendChild(i);
+  btn.appendChild(i);
 }
 
-function resetButton(pre, btn, icon_name) {
+function resetButton(btn, arrow) {
   /* while (btn.firstChild) {
     btn.removeChild(btn.firstChild);
   } */
-  btn.removeChild(btn.lastChild);
+  let icon = document.createElement("i");
+
+  for (i = 0; i < 2; i++) {
+    btn.removeChild(btn.lastChild);
+  }
   //let i = document.createElement("i");
   //i.setAttribute("class", "fas fa-angle-down");
-  btn.firstChild.children[2].setAttribute("class", "fas fa-angle-down");
+  icon.setAttribute("class", "fas fa-angle-down" + " " + arrow);
+  btn.appendChild(icon);
   //i.setAttribute("id", icon_name);
   //i.setAttribute("aria-hidden", "true");
   //pre.innerHTML = pre.innerHTML + i.outerHTML;
@@ -120,9 +139,8 @@ function resetButton(pre, btn, icon_name) {
 function createIssue(title, description, aria, type, link) {
   let d = document.createElement("div");
   let b = document.createElement("button");
-  let p = document.createElement("pre");
   let i1 = document.createElement("i");
-  let t = document.createElement("text");
+  let p = document.createElement("pre");
   let i2 = document.createElement("i");
 
   d.setAttribute("class", "dropdown");
@@ -134,23 +152,23 @@ function createIssue(title, description, aria, type, link) {
   if (type == "warning") {
     i1.setAttribute("class", "fas fa-exclamation-triangle");
   }
-  t.textContent = title;
+  p.textContent = "  " + title;
   i2.setAttribute("class", "fas fa-angle-down");
   i2.setAttribute("aria-hidden", "true");
+  i2.setAttribute("class", "fas fa-angle-down downArrow1");
 
   d.appendChild(b);
+  b.appendChild(i1);
   b.appendChild(p);
-  p.appendChild(i1);
-  p.appendChild(t);
-  p.appendChild(i2);
+  b.appendChild(i2);
 
   b.addEventListener('click', function() {
     toggleActive(d);
 
     if (d.classList.contains("active")) {
-      drpdwnButton(b, p, i1, description, link, "upArrow");
+      drpdwnButton(b, i1, description, link, "upArrow1");
     } else {
-      resetButton(p, b, "icon")
+      resetButton(b, "downArrow1")
     }
   });
 
