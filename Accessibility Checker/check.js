@@ -27,59 +27,6 @@ window.onload = function () {
     window.top.close();
     chrome.windows.create({url: "popup.html", type: "popup", height: 250, width: 200, left: 940, top: 65});
   });
-
-    /*
-    btn = document.getElementById("runAgainBtn");
-    btn.addEventListener('click', function() {
-      window.top.close();
-      chrome.windows.create({url: "popup.html", type: "popup", height: 250, width: 200, left: 940, top: 65});
-    });
-
-    btn1 = document.getElementById("bdrpdwn1");
-    div1 = document.getElementById("drpdwn1");
-
-    btn1.addEventListener('click', function() {
-      toggleActive(div1);
-
-      if (div1.classList.contains("active")) {
-        pre1 = document.getElementById("pre1");
-        i1 = document.getElementById("icon1");
-        drpdwnButton(btn1, pre1, i1, "Ratio of colors not adequate to meet guidelines, must be 3:1. Change colors for more contrast.", "https://www.w3.org/WAI/standards-guidelines/wcag/", "upArrow1");
-      } else {
-        pre1 = document.getElementById("pre1");
-        resetButton(pre1, btn1, "icon1")
-      }
-    });
-
-    btn2 = document.getElementById("bdrpdwn2");
-    div2 = document.getElementById("drpdwn2");
-    btn2.addEventListener('click', function() {
-      toggleActive(div2);
-
-      if (div2.classList.contains("active")) {
-        pre2 = document.getElementById("pre2");
-        i2 = document.getElementById("icon2");
-        drpdwnButton(btn2, pre2, i2, "Contrast in fonts not strong enough for readability, must have higher ratio of 4.5:1 for normal text. Increase or decrease text size.", "https://datasavvy.me/2018/06/06/power-bi-report-accessibility-checklist/", "upArrow2");
-      } else {
-        pre2 = document.getElementById("pre2");
-        resetButton(pre2, btn2, "icon2")
-      }
-    });
-
-    btn3 = document.getElementById("bdrpdwn3");
-    div3 = document.getElementById("drpdwn3");
-    btn3.addEventListener('click', function() {
-      toggleActive(div3);
-
-      if (div3.classList.contains("active")) {
-        pre3 = document.getElementById("pre3");
-        i3 = document.getElementById("icon3");
-        drpdwnButton(btn3, pre3, i3, "Ratio of colors not adequate to meet guidelines, must be 3:1. Change colors for more contrast.", "https://datasavvy.me/2018/06/06/power-bi-report-accessibility-checklist/", "upArrow3");
-      } else {
-        pre3 = document.getElementById("pre3");
-        resetButton(pre3, btn3, "icon3")
-      }
-    }); */
 }
 
 function toggleActive(element) {
@@ -94,8 +41,6 @@ function drpdwnButton(btn, icon, text, link, arrow) {
   let a = document.createElement("a");
   let i = document.createElement("i");
   let b = document.createElement("button");
-  //let i = document.createElement("i");
-  //let pre2 = document.createElement("pre2");
 
   t.textContent = text;
   t.setAttribute("class", "issueInfo");
@@ -107,7 +52,7 @@ function drpdwnButton(btn, icon, text, link, arrow) {
   p.setAttribute("class", "issueInfo");
 
   b.addEventListener('click', function() {
-    location.href = link;
+    window.open(link, '_blank');
   });
 
   p.appendChild(t);
@@ -118,22 +63,13 @@ function drpdwnButton(btn, icon, text, link, arrow) {
 }
 
 function resetButton(btn, arrow) {
-  /* while (btn.firstChild) {
-    btn.removeChild(btn.firstChild);
-  } */
   let icon = document.createElement("i");
 
   for (i = 0; i < 2; i++) {
     btn.removeChild(btn.lastChild);
   }
-  //let i = document.createElement("i");
-  //i.setAttribute("class", "fas fa-angle-down");
   icon.setAttribute("class", "fas fa-angle-down" + " " + arrow);
   btn.appendChild(icon);
-  //i.setAttribute("id", icon_name);
-  //i.setAttribute("aria-hidden", "true");
-  //pre.innerHTML = pre.innerHTML + i.outerHTML;
-  //btn.firstChild.appendChild(i);
 }
 
 function createIssue(title, description, aria, type, link) {
