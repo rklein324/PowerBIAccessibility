@@ -11,13 +11,18 @@ window.onload = function () {
       template = document.createElement('template');
       template.innerHTML = html;
       results = runTests(template.content);
+      //all_charts = selectCharts(template.content);
+      //console.log(all_charts);
+      //chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "ids", charts: all_charts});
       let issueArea = document.getElementById("issues");
       results.seriesMarkers.forEach(issue => {
-        issueArea.appendChild(createIssue(issue.result, "series should have different markers", "Series Markers Dropdown Information Button", "warning", "https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#markers"))
+        issueArea.appendChild(createIssue(issue.result, "series should have different markers", "Series Markers Dropdown Information Button", "warning", "https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#markers"));
+        chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "insert", id_num: issue.id_num});
       });
 
       results.stacked.forEach(issue => {
-        issueArea.appendChild(createIssue(issue.result, "should use clustered over stacked", "Stacked Chart Dropdown Information Button", "warning", "https://eagereyes.org/techniques/stacked-bars-are-the-worst"))
+        issueArea.appendChild(createIssue(issue.result, "should use clustered over stacked", "Stacked Chart Dropdown Information Button", "warning", "https://eagereyes.org/techniques/stacked-bars-are-the-worst"));
+        chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "insert", id_num: issue.id_num});
       });
     });
   });

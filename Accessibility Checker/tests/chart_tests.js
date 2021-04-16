@@ -61,6 +61,7 @@ returns a list of all charts in the document
 */
 function selectCharts(dom) {
     let charts = dom.querySelectorAll(allChartsSelector);
+    console.log(charts);
     return charts;
 }
 
@@ -77,6 +78,7 @@ returns a list of all charts that includes a stacked element
 */
 function selectStackedCharts(dom) {
     let charts = dom.querySelectorAll(stackedChartsSelector);
+    //console.log(charts);
     return charts;
 }
 
@@ -99,7 +101,7 @@ function seriesMarkersDifferent(chart) {
             shapes.push(marker.querySelector("path").getAttribute('d'));
         });
         if ((new Set(shapes)).size != shapes.length) {
-            return "Markers are the same"
+            return "Markers are the same";
         }
         return false
     } else {
@@ -132,7 +134,7 @@ function testSeriesMarkers(dom) {
         let title = chart.closest('visual-container-modern').querySelector('.visualTitle').title;
         let result = seriesMarkersDifferent(chart);
         if (result) {
-            results.push({chart: title, result: result});
+            results.push({chart: title, result: result, id_num: chart.id});
         }
     })
     return results;
@@ -144,7 +146,7 @@ function testStacked(dom) {
         let title = chart.closest('visual-container-modern').querySelector('.visualTitle').title;
         let result = checkStacked(chart);
         if (result) {
-            results.push({chart: title, result: "Use " + classToName[result]});
+            results.push({chart: title, result: "Use " + classToName[result], id_num: chart.id});
         }
     })
     return results;
