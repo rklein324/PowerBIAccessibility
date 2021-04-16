@@ -1,11 +1,12 @@
 // will hold the results of the tests
-var results = {}
+var results = {};
 
 window.onload = function () {
   // gets the most recent active tab that is not the popup,
   // passes that to content.js, gets the DOM as a string and converts it to a DOM element
   // runs tests and stores in 'results'
   chrome.tabs.query({active: true, currentWindow: false}, function(tabs) {
+    currentTab = tabs[tabs.length - 1].id;
     chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "report_back"}, function(html) {
       html = html.trim();
       template = document.createElement('template');
@@ -16,12 +17,12 @@ window.onload = function () {
       //chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "ids", charts: all_charts});
       let issueArea = document.getElementById("issues");
       results.seriesMarkers.forEach(issue => {
-        issueArea.appendChild(createIssue(issue.result, "series should have different markers", "Series Markers Dropdown Information Button", "warning", "https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#markers"));
+        issueArea.appendChild(createIssue(issue.result, "series should have different markers", "Series Markers Dropdown Information Button", "warning", "https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#markers", issue.id_num));
         chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "insert", id_num: issue.id_num});
       });
 
       results.stacked.forEach(issue => {
-        issueArea.appendChild(createIssue(issue.result, "should use clustered over stacked", "Stacked Chart Dropdown Information Button", "warning", "https://eagereyes.org/techniques/stacked-bars-are-the-worst"));
+        issueArea.appendChild(createIssue(issue.result, "should use clustered over stacked", "Stacked Chart Dropdown Information Button", "warning", "https://eagereyes.org/techniques/stacked-bars-are-the-worst", issue.id_num));
         chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "insert", id_num: issue.id_num});
       });
     });
@@ -77,7 +78,8 @@ function resetButton(btn, arrow) {
   btn.appendChild(icon);
 }
 
-function createIssue(title, description, aria, type, link) {
+function createIssue(title, description, aria, type, link, chart_id) {
+  console.log(chart_id);
   let d = document.createElement("div");
   let b = document.createElement("button");
   let i1 = document.createElement("i");
@@ -108,8 +110,10 @@ function createIssue(title, description, aria, type, link) {
 
     if (d.classList.contains("active")) {
       drpdwnButton(b, i1, description, link, "upArrow1");
+      chrome.tabs.sendMessage(currentTab, {text: "highlight", active: "active", id_num: chart_id});
     } else {
       resetButton(b, "downArrow1")
+      chrome.tabs.sendMessage(currentTab, {text: "highlight", active: "inactive", id_num: chart_id});
     }
   });
 

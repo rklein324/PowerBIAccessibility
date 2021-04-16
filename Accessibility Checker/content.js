@@ -16,8 +16,20 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
       sendResponse(document.all[0].innerHTML);
 
     } else if (msg.text === 'insert') {
+
       let el = document.getElementById(msg.id_num);
       el.style.border = "medium solid #f8d568";
+
+    } else if (msg.text === 'highlight') {
+
+      console.log(msg.id_num); // undefined
+      let el = document.getElementById(msg.id_num);
+      console.log(el); // null
+      if (msg.active == 'active') {
+        el.style.backgroundColor = "#fdf1c9";
+      } else {
+        el.style.backgroundColor = "transparent";
+      }
 
     }
 });
