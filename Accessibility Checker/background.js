@@ -1,4 +1,4 @@
-chrome.browserAction.onClicked.addListener(function(activeTab)
+chrome.browserAction.onClicked.addListener(function()
 {
   var w = 200;
   var h = 250;
