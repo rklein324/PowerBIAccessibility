@@ -12,18 +12,21 @@ window.onload = function () {
       template = document.createElement('template');
       template.innerHTML = html;
       results = runTests(template.content);
-      //all_charts = selectCharts(template.content);
-      //console.log(all_charts);
-      //chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "ids", charts: all_charts});
       let issueArea = document.getElementById("issues");
+
       results.seriesMarkers.forEach(issue => {
-        issueArea.appendChild(createIssue(issue.result, "series should have different markers", "Series Markers Dropdown Information Button", "warning", "https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#markers", issue.id_num));
-        chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "insert", id_num: issue.id_num});
+        issueArea.appendChild(createIssue(issue.result, issue.description, issue.aria, issue.type, issue.link, issue.id_num));
+        chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "insert", id_num: issue.id_num, type: issue.type});
       });
 
       results.stacked.forEach(issue => {
-        issueArea.appendChild(createIssue(issue.result, "should use clustered over stacked", "Stacked Chart Dropdown Information Button", "warning", "https://eagereyes.org/techniques/stacked-bars-are-the-worst", issue.id_num));
-        chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "insert", id_num: issue.id_num});
+        issueArea.appendChild(createIssue(issue.result, issue.description, issue.aria, issue.type, issue.link, issue.id_num));
+        chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "insert", id_num: issue.id_num, type: issue.type});
+      });
+
+      results.title.forEach(issue => {
+        issueArea.appendChild(createIssue(issue.result, issue.description, issue.aria, issue.type, issue.link, issue.id_num));
+        chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "insert", id_num: issue.id_num, type: issue.type});
       });
     });
   });
@@ -110,10 +113,10 @@ function createIssue(title, description, aria, type, link, chart_id) {
 
     if (d.classList.contains("active")) {
       drpdwnButton(b, i1, description, link, "upArrow1");
-      chrome.tabs.sendMessage(currentTab, {text: "highlight", active: "active", id_num: chart_id});
+      chrome.tabs.sendMessage(currentTab, {text: "highlight", active: "active", id_num: chart_id, type: type});
     } else {
       resetButton(b, "downArrow1")
-      chrome.tabs.sendMessage(currentTab, {text: "highlight", active: "inactive", id_num: chart_id});
+      chrome.tabs.sendMessage(currentTab, {text: "highlight", active: "inactive", id_num: chart_id, type: type});
     }
   });
 

@@ -61,7 +61,6 @@ returns a list of all charts in the document
 */
 function selectCharts(dom) {
     let charts = dom.querySelectorAll(allChartsSelector);
-    console.log(charts);
     return charts;
 }
 
@@ -78,7 +77,6 @@ returns a list of all charts that includes a stacked element
 */
 function selectStackedCharts(dom) {
     let charts = dom.querySelectorAll(stackedChartsSelector);
-    //console.log(charts);
     return charts;
 }
 
@@ -88,9 +86,9 @@ function selectStackedCharts(dom) {
 
 /*
 checks if chart has markers
-if it does not, returns 'no markers'
+if it does not, returns "Markers are not used"
 if it does, checks that each marker used is unique
-if they are, returns true
+if they are, returns "Markers are the same"
 if they are not, returns false
 */
 function seriesMarkersDifferent(chart) {
@@ -124,6 +122,18 @@ function checkStacked(chart) {
     return result;
 }
 
+/*
+checks if chart has a title
+if it does, returns false
+if it does not, returns "Chart does not have title"
+*/
+function checkTitle(chart) {
+    if (chart.closest('visual-container-modern').querySelector('.visualTitle') == null) {
+        return "Chart does not have title"
+    }
+    return false;
+}
+
 /*-----------------
   DISPLAY RESULTS
 -----------------*/
@@ -134,7 +144,7 @@ function testSeriesMarkers(dom) {
         let title = chart.closest('visual-container-modern').querySelector('.visualTitle').title;
         let result = seriesMarkersDifferent(chart);
         if (result) {
-            results.push({chart: title, result: result, id_num: chart.id});
+            results.push({chart: title, result: result, description: "series should have different markers", aria: "Series Markers Dropdown Information Button", type: "warning", link: "https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#markers", id_num: chart.id});
         }
     })
     return results;
@@ -146,7 +156,18 @@ function testStacked(dom) {
         let title = chart.closest('visual-container-modern').querySelector('.visualTitle').title;
         let result = checkStacked(chart);
         if (result) {
-            results.push({chart: title, result: "Use " + classToName[result], id_num: chart.id});
+            results.push({chartTitle: title, result: "Use " + classToName[result], description: "should use clustered over stacked", aria: "Stacked Chart Dropdown Information Button", type: "warning", link: "https://eagereyes.org/techniques/stacked-bars-are-the-worst", id_num: chart.id});
+        }
+    })
+    return results;
+}
+
+function testTitles(dom) {
+    let results = []
+    selectCharts(dom).forEach(chart => {
+        let result = checkTitle(chart);
+        if (result) {
+            results.push({chartTitle: null, result: "Add Title", description: "should have title", aria: "Untitled Chart Dropdown Information Button", type: "error", link: "https://www.w3.org/WAI/WCAG21/quickref/#headings-and-labels", id_num: chart.id});
         }
     })
     return results;
@@ -156,5 +177,6 @@ function runTests(dom) {
     let results = {}
     results.seriesMarkers = testSeriesMarkers(dom);
     results.stacked = testStacked(dom);
+    results.title = testTitles(dom);
     return results
 }

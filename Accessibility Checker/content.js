@@ -18,7 +18,11 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
     } else if (msg.text === 'insert') {
 
       let el = document.getElementById(msg.id_num);
-      el.style.border = "medium solid #f8d568";
+      if (msg.type == "warning") {
+        el.style.border = "medium solid #f8d568";
+      } else if (msg.type == "error") {
+        el.style.border = "medium solid #fdc9c9";
+      }
 
     } else if (msg.text === 'highlight') {
 
@@ -26,7 +30,12 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
       let el = document.getElementById(msg.id_num);
       console.log(el); // null
       if (msg.active == 'active') {
-        el.style.backgroundColor = "#fdf1c9";
+        if (msg.type == "warning") {
+          el.style.backgroundColor = "#fdf1c9";
+        } else if (msg.type == "error") {
+          el.style.backgroundColor = "#fdc9c9";
+        }
+        //el.style.backgroundColor = "#fdf1c9";
       } else {
         el.style.backgroundColor = "transparent";
       }
