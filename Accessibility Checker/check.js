@@ -47,9 +47,9 @@ function drpdwnButton(btn, icon, text, link, arrow) {
 
   let t = document.createElement("text");
   let p = document.createElement("p");
-  let a = document.createElement("a");
   let i = document.createElement("i");
   let b = document.createElement("button");
+  let br = document.createElement("br");
 
   t.textContent = text;
   t.setAttribute("class", "issueInfo");
@@ -65,7 +65,7 @@ function drpdwnButton(btn, icon, text, link, arrow) {
   });
 
   p.appendChild(t);
-  b.appendChild(a);
+  p.appendChild(br);
   p.appendChild(b);
   btn.appendChild(p);
   btn.appendChild(i);
@@ -82,7 +82,7 @@ function resetButton(btn, arrow) {
 }
 
 function createIssue(title, description, aria, type, link, chart_id) {
-  console.log(chart_id);
+  console.log(title + " " + chart_id);
   let d = document.createElement("div");
   let b = document.createElement("button");
   let i1 = document.createElement("i");

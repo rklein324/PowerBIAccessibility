@@ -1,5 +1,5 @@
 
-const allChartsSelector = '.visual-barChart, .visual-columnChart, .visual-clusteredBarChart, .visual-clusteredColumnChart, .visual-hundredPercentStackedBarChart, .visual-hundredPercentStackedColumnChart, .visual-lineChart, .visual-areaChart, .visual-stackedAreaChart, .visual-lineStackedColumnComboChart, .visual-lineClusteredColumnComboChart, .visual-ribbonChart, .visual-waterfallChart, .visual-funnel .visual-scatterChart, .visual-pieChart, .visual-donutChart, .visual-treemap';
+const allChartsSelector = '.visual-barChart, .visual-columnChart, .visual-clusteredBarChart, .visual-clusteredColumnChart, .visual-hundredPercentStackedBarChart, .visual-hundredPercentStackedColumnChart, .visual-lineChart, .visual-areaChart, .visual-stackedAreaChart, .visual-lineStackedColumnComboChart, .visual-lineClusteredColumnComboChart, .visual-ribbonChart, .visual-waterfallChart, .visual-funnel, .visual-scatterChart, .visual-pieChart, .visual-donutChart, .visual-treemap';
 
 // Listen for messages
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
@@ -12,7 +12,7 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
         chart.setAttribute("id", num.toString());
         num += 1;
       });
-
+      console.log(charts);
       sendResponse(document.all[0].innerHTML);
 
     } else if (msg.text === 'insert') {
@@ -21,14 +21,12 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
       if (msg.type == "warning") {
         el.style.border = "medium solid #f8d568";
       } else if (msg.type == "error") {
-        el.style.border = "medium solid #fdc9c9";
+        el.style.border = "medium solid #fa8072";
       }
 
     } else if (msg.text === 'highlight') {
 
-      console.log(msg.id_num); // undefined
       let el = document.getElementById(msg.id_num);
-      console.log(el); // null
       if (msg.active == 'active') {
         if (msg.type == "warning") {
           el.style.backgroundColor = "#fdf1c9";
