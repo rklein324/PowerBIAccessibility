@@ -14,6 +14,11 @@ window.onload = function () {
       results = runTests(template.content);
       let issueArea = document.getElementById("issues");
 
+      results.title.forEach(issue => {
+        issueArea.appendChild(createIssue(issue.result, issue.description, issue.aria, issue.type, issue.link, issue.id_num));
+        chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "insert", id_num: issue.id_num, type: issue.type});
+      });
+      
       results.seriesMarkers.forEach(issue => {
         issueArea.appendChild(createIssue(issue.result, issue.description, issue.aria, issue.type, issue.link, issue.id_num));
         chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "insert", id_num: issue.id_num, type: issue.type});
@@ -24,10 +29,6 @@ window.onload = function () {
         chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "insert", id_num: issue.id_num, type: issue.type});
       });
 
-      results.title.forEach(issue => {
-        issueArea.appendChild(createIssue(issue.result, issue.description, issue.aria, issue.type, issue.link, issue.id_num));
-        chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "insert", id_num: issue.id_num, type: issue.type});
-      });
     });
   });
 

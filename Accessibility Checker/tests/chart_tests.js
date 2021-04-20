@@ -6,7 +6,7 @@
 
 const allChartsSelector = '.visual-barChart, .visual-columnChart, .visual-clusteredBarChart, .visual-clusteredColumnChart, .visual-hundredPercentStackedBarChart, .visual-hundredPercentStackedColumnChart, .visual-lineChart, .visual-areaChart, .visual-stackedAreaChart, .visual-lineStackedColumnComboChart, .visual-lineClusteredColumnComboChart, .visual-ribbonChart, .visual-waterfallChart, .visual-funnel, .visual-scatterChart, .visual-pieChart, .visual-donutChart, .visual-treemap';
 
-const seriesChartsSelector = '.visual-lineChart, .visual-areaChart, .visual-stackedAreaChart, .visual-lineStackedColumnComboChart, .visual-lineClusteredColumnComboChart, .visual-scatterChart';
+const seriesChartsSelector = '.visual-lineChart, .visual-areaChart, .visual-stackedAreaChart, .visual-lineStackedColumnComboChart, .visual-lineClusteredColumnComboChart';
 
 const stackedChartsSelector = '.visual-barChart, .visual-columnChart, .visual-hundredPercentStackedBarChart, .visual-hundredPercentStackedColumnChart, .visual-lineStackedColumnComboChart, .visual-stackedAreaChart';
 
@@ -116,7 +116,7 @@ function checkStacked(chart) {
     let result = false
     chart.classList.forEach(className => {
         if (className in stackedToClustered) {
-            result = stackedToClustered[className];
+            result = "Use " + classToName[stackedToClustered[className]];
         }
     })
     return result;
@@ -141,7 +141,11 @@ function checkTitle(chart) {
 function testSeriesMarkers(dom) {
     let results = []
     selectSeriesCharts(dom).forEach(chart => {
-        let title = chart.closest('visual-container-modern').querySelector('.visualTitle').title;
+        let title = null;
+        let titleNode = chart.closest('visual-container-modern').querySelector('.visualTitle');
+        if (titleNode) {
+            title = titleNode.title;
+        }
         let result = seriesMarkersDifferent(chart);
         if (result) {
             results.push({chart: title, result: result, description: "Line or area plot has multiple series. Use unique markers to differentiate between series. Useful for helping colorblind users.", aria: "Series Markers Dropdown Information Button", type: "warning", link: "https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#markers", id_num: chart.id});
@@ -153,10 +157,14 @@ function testSeriesMarkers(dom) {
 function testStacked(dom) {
     let results = []
     selectStackedCharts(dom).forEach(chart => {
-        let title = chart.closest('visual-container-modern').querySelector('.visualTitle').title;
+        let title = null;
+        let titleNode = chart.closest('visual-container-modern').querySelector('.visualTitle');
+        if (titleNode) {
+            title = titleNode.title;
+        }
         let result = checkStacked(chart);
         if (result) {
-            results.push({chartTitle: title, result: "Use " + classToName[result], description: "Use clustered over stacked charts. Increases readability and trend recognition.", aria: "Stacked Chart Dropdown Information Button", type: "warning", link: "https://eagereyes.org/techniques/stacked-bars-are-the-worst", id_num: chart.id});
+            results.push({chartTitle: title, result: result, description: "Use clustered over stacked charts. Increases readability and trend recognition.", aria: "Stacked Chart Dropdown Information Button", type: "warning", link: "https://eagereyes.org/techniques/stacked-bars-are-the-worst", id_num: chart.id});
         }
     })
     return results;
@@ -167,7 +175,7 @@ function testTitles(dom) {
     selectCharts(dom).forEach(chart => {
         let result = checkTitle(chart);
         if (result) {
-            results.push({chartTitle: null, result: "Add Title", description: "Include descriptive titles on all charts. Helps people using screen readers navigate. WCAG requirement.", aria: "Untitled Chart Dropdown Information Button", type: "error", link: "https://www.w3.org/WAI/WCAG21/quickref/#headings-and-labels", id_num: chart.id});
+            results.push({chartTitle: null, result: result, description: "Include descriptive titles on all charts. Helps people using screen readers navigate. WCAG requirement.", aria: "Untitled Chart Dropdown Information Button", type: "error", link: "https://www.w3.org/WAI/WCAG21/quickref/#headings-and-labels", id_num: chart.id});
         }
     })
     return results;
@@ -175,8 +183,8 @@ function testTitles(dom) {
 
 function runTests(dom) {
     let results = {}
+    results.title = testTitles(dom);
     results.seriesMarkers = testSeriesMarkers(dom);
     results.stacked = testStacked(dom);
-    results.title = testTitles(dom);
     return results
 }
