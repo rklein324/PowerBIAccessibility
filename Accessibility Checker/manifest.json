@@ -14,10 +14,10 @@
               "128": "capstonelogocolors.png"
     },
     "content_scripts": [{
-    "matches": ["https://app.powerbi.com/view?*"],
+    "matches": ["https://app.powerbi.com/*"],
     "js": ["content.js"]
   }],
-    "permissions": ["tabs", "https://app.powerbi.com/view?*"],
+    "permissions": ["tabs", "https://app.powerbi.com/*"],
     "background": {
         "scripts": ["background.js"],
         "persistent": false
