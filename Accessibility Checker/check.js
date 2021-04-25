@@ -14,19 +14,23 @@ window.onload = function () {
       results = runTests(template.content);
       let issueArea = document.getElementById("issues");
 
+      let num = 1;
       results.title.forEach(issue => {
-        issueArea.appendChild(createIssue(issue.result, issue.description, issue.aria, issue.type, issue.link, issue.id_num));
+        issueArea.appendChild(createIssue(issue.result, issue.description, issue.aria, issue.type, issue.link, issue.id_num, num));
         chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "insert", id_num: issue.id_num, type: issue.type});
+        num += 1;
       });
-      
+
       results.seriesMarkers.forEach(issue => {
-        issueArea.appendChild(createIssue(issue.result, issue.description, issue.aria, issue.type, issue.link, issue.id_num));
+        issueArea.appendChild(createIssue(issue.result, issue.description, issue.aria, issue.type, issue.link, issue.id_num, num));
         chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "insert", id_num: issue.id_num, type: issue.type});
+        num += 1;
       });
 
       results.stacked.forEach(issue => {
-        issueArea.appendChild(createIssue(issue.result, issue.description, issue.aria, issue.type, issue.link, issue.id_num));
+        issueArea.appendChild(createIssue(issue.result, issue.description, issue.aria, issue.type, issue.link, issue.id_num, num));
         chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "insert", id_num: issue.id_num, type: issue.type});
+        num += 1;
       });
 
     });
@@ -82,8 +86,7 @@ function resetButton(btn, arrow) {
   btn.appendChild(icon);
 }
 
-function createIssue(title, description, aria, type, link, chart_id) {
-  console.log(title + " " + chart_id);
+function createIssue(title, description, aria, type, link, chart_id, number) {
   let d = document.createElement("div");
   let b = document.createElement("button");
   let i1 = document.createElement("i");
@@ -94,13 +97,12 @@ function createIssue(title, description, aria, type, link, chart_id) {
   b.setAttribute("class", "dropbtn " + type);
   b.setAttribute("aria-label", aria);
   if (type == "error") {
-    i1.setAttribute("class", "fas fa-minus-circle");
+    i1.setAttribute("class", "fas fa-times-circle");
   }
   if (type == "warning") {
     i1.setAttribute("class", "fas fa-exclamation-triangle");
   }
-  p.textContent = "  " + title;
-  i2.setAttribute("class", "fas fa-angle-down");
+  p.textContent = "  " + number + ". " + title;
   i2.setAttribute("aria-hidden", "true");
   i2.setAttribute("class", "fas fa-angle-down downArrow1");
 

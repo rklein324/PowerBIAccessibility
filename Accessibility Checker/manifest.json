@@ -4,7 +4,7 @@
     "name": "Accessibility Checker for Power BI",
     "author": "Rebecca Klein and Erika Sundstrom",
     "description": "A chrome extension that helps Power BI report creators make their reports more accessible",
-    "version": "1.0",
+    "version": "1.1",
     "browser_action": {
         "default_icon": "capstonelogocolors.png",
         "default_title": "Accessibility Checker Power BI"
