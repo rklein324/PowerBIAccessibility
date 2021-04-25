@@ -73,7 +73,7 @@ function drpdwnButton(btn, charts, text, link) {
     let l = document.createElement("li");
     let title = chart.chart;
     if (title == null) {
-      title = "Untitle Chart #" + untitledNum++
+      title = "Untitled Chart #" + untitledNum++
     }
     l.textContent = title;
     u.appendChild(l);
@@ -158,7 +158,7 @@ function createIssue(title, charts, description, aria, type, link, number) {
   b.appendChild(p);
   b.appendChild(i2);
 
-  // add the event listener for when the dropdown nature of the botton is opened or closed
+  // add the event listener for when the dropdown nature of the button is opened or closed
   // sends the information to content.js to update highlighting
   b.addEventListener('click', function() {
     toggleActive(d);
