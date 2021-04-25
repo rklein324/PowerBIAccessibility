@@ -116,7 +116,7 @@ function checkStacked(chart) {
     let result = false
     chart.classList.forEach(className => {
         if (className in stackedToClustered) {
-            result = "Use " + classToName[stackedToClustered[className]];
+            result = classToName[stackedToClustered[className]];
         }
     })
     return result;
@@ -139,7 +139,11 @@ function checkTitle(chart) {
 -----------------*/
 
 function testSeriesMarkers(dom) {
-    let results = []
+    // create variables to hold end results and specific issues
+    let results = [];
+    let noMarkers = {title: "Markers Are Not Used", charts: [], description: "Line or area plot has multiple series. Use unique markers to differentiate between series. Useful for helping colorblind users.", aria: "Series Without Markers Dropdown Information Button", type: "warning", link: "https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#markers"};
+    let sameMarkers = {title: "Markes Are the Same", charts: [], description: "Line or area plot has multiple series. Use unique markers to differentiate between series. Useful for helping colorblind users.", aria: "Series With Same Markers Dropdown Information Button", type: "warning", link: "https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#markers"};
+    // go through charts and add to relevant issues
     selectSeriesCharts(dom).forEach(chart => {
         let title = null;
         let titleNode = chart.closest('visual-container-modern').querySelector('.visualTitle');
@@ -147,15 +151,28 @@ function testSeriesMarkers(dom) {
             title = titleNode.title;
         }
         let result = seriesMarkersDifferent(chart);
-        if (result) {
-            results.push({chart: title, result: result, description: "Line or area plot has multiple series. Use unique markers to differentiate between series. Useful for helping colorblind users.", aria: "Series Markers Dropdown Information Button", type: "warning", link: "https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#markers", id_num: chart.id});
+        if (result == "Markers are not used") {
+            noMarkers.charts.push({chart: title, id_num: chart.id});
+        }
+        if (result == "Markers are the same") {
+            sameMarkers.charts.push({chart: title, id_num: chart.id});
         }
     })
+    // add issues to results variable if applicable
+    if (noMarkers.charts.length > 0) {
+        results.push(noMarkers);
+    }
+    if (sameMarkers.charts.length > 0) {
+        results.push(sameMarkers);
+    }
     return results;
 }
 
 function testStacked(dom) {
-    let results = []
+    // create variables to hold end results and specific issues
+    let results = [];
+    let stacked = {title: "Stacked Chart is Used", charts: [], description: "Use clustered over stacked charts. Increases readability and trend recognition.", aria: "Stacked Chart Dropdown Information Button", type: "warning", link: "https://eagereyes.org/techniques/stacked-bars-are-the-worst"};
+    // go through charts and add to relevant issues
     selectStackedCharts(dom).forEach(chart => {
         let title = null;
         let titleNode = chart.closest('visual-container-modern').querySelector('.visualTitle');
@@ -164,27 +181,40 @@ function testStacked(dom) {
         }
         let result = checkStacked(chart);
         if (result) {
-            results.push({chartTitle: title, result: result, description: "Use clustered over stacked charts. Increases readability and trend recognition.", aria: "Stacked Chart Dropdown Information Button", type: "warning", link: "https://eagereyes.org/techniques/stacked-bars-are-the-worst", id_num: chart.id});
+            stacked.charts.push({chart: title, clustered: result, id_num: chart.id});
         }
     })
+    // add issues to results variable if applicable
+    if (stacked.charts.length > 0) {
+        results.push(stacked);
+    }
     return results;
 }
 
 function testTitles(dom) {
-    let results = []
+    // create variables to hold end results and specific issues
+    let results = [];
+    let noTitle = {title: "Chart Does Not Have Title", charts: [], description: "Include descriptive titles on all charts. Helps people using screen readers navigate. WCAG requirement.", aria: "Untitled Chart Dropdown Information Button", type: "error", link: "https://www.w3.org/WAI/WCAG21/quickref/#headings-and-labels"};
+    // go through charts and add to relevant issues
     selectCharts(dom).forEach(chart => {
         let result = checkTitle(chart);
         if (result) {
-            results.push({chartTitle: null, result: result, description: "Include descriptive titles on all charts. Helps people using screen readers navigate. WCAG requirement.", aria: "Untitled Chart Dropdown Information Button", type: "error", link: "https://www.w3.org/WAI/WCAG21/quickref/#headings-and-labels", id_num: chart.id});
+           noTitle.charts.push({chart: null, id_num: chart.id});
         }
     })
+    // add issues to results variable if applicable
+    if (noTitle.charts.length > 0) {
+        results.push(noTitle);
+    }
     return results;
 }
 
+// combines all tests
+// make sure errors are put first
 function runTests(dom) {
-    let results = {}
-    results.title = testTitles(dom);
-    results.seriesMarkers = testSeriesMarkers(dom);
-    results.stacked = testStacked(dom);
-    return results
+    let results = [];
+    results = results.concat(testTitles(dom));
+    results = results.concat(testSeriesMarkers(dom));
+    results = results.concat(testStacked(dom));
+    return results;
 }
