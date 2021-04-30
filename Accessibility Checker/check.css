@@ -18,11 +18,13 @@ button pre{
   margin: 0px;
   padding: 0px;
   display: inline-flex;
+  width: 310px;
 }
 
 button {
   display: inline-flex;
 }
+
 
 #error {
   color: #fa8072;
@@ -35,6 +37,50 @@ button {
 #overview {
   font-size: 16px;
   margin-left: 10px;
+}
+
+.hide1 {
+  visibility: hidden;
+  font-size: 14px;
+  background-color: #dadada;
+  color: black;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  position: absolute;
+  z-index: 1;
+
+  width: 120px;
+  top: 28%;
+  left: 40%;
+  margin-left: -150px;
+}
+
+#error:hover + .hide1 {
+  visibility: visible;
+}
+
+.hide2 {
+  visibility: hidden;
+  font-size: 14px;
+  background-color: #dadada;
+  color: black;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  position: absolute;
+  z-index: 1;
+
+  width: 160px;
+  top: 28%;
+  left: 62%;
+  margin-left: -150px;
+}
+
+#warning:hover + .hide2 {
+  visibility: visible;
 }
 
 .issueInfo {
@@ -52,8 +98,41 @@ button {
 
 .downArrow1 {
   font-size: 16px;
-  position: absolute;
-  left: 88.5%;
+  position: relative;
+  top: -18;
+  left: 95.5%;
+}
+
+.fa-check-circle {
+  color: #4bd37b;
+  font-size: 40px;
+  padding-right: 15px;
+}
+
+#success {
+  width: 350px;
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
+#refresh {
+  width: 350px;
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
+#problem {
+  color: red;
+  font-size: 40px;
+  padding-right: 15px;
 }
 
 i {
@@ -91,9 +170,9 @@ i {
   margin-left: 2px;
   margin-top: -14px;
   margin-bottom: 0px;
-  padding-bottom: 0px;
-  padding-left: 5px;
   text-align: center;
+  padding-top: 2.8px;
+  padding-left: 7px;
   font-family: 'Roboto', sans-serif;
   font-size: 13px;
 }
@@ -142,4 +221,8 @@ i {
 .active .warning {
   border: 1.5px solid black;
   border-color: #f8d568;
+}
+
+:focus-visible {
+    outline: 3px solid darkgray;
 }

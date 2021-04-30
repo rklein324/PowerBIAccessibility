@@ -12,24 +12,25 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
         chart.setAttribute("id", num.toString());
         num += 1;
       });
-      console.log(charts);
+      console.log("here");
+      console.log(document.all[0].innerHTML);
       sendResponse(document.all[0].innerHTML);
 
     // highlights all charts with issues around the border
     } else if (msg.text === 'insert') {
       msg.charts.forEach(id => {
-        let el = document.getElementById(id);
+        let el = document.getElementById(id.id_num);
         if (msg.type == "warning") {
           el.style.border = "medium solid #f8d568";
         } else if (msg.type == "error") {
           el.style.border = "medium solid #fa8072";
         }
       });
-      
+
     // highlights charts wit issues connected to a dropdown that is open
     } else if (msg.text === 'highlight') {
       msg.charts.forEach(id => {
-        let el = document.getElementById(id);
+        let el = document.getElementById(id.id_num);
         if (msg.active == 'active') {
           if (msg.type == "warning") {
             el.style.backgroundColor = "#fdf1c9";

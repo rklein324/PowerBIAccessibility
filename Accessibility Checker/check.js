@@ -2,6 +2,7 @@
 This is where the User Interface of the issues popup (or 'check.html') is updated based on the test results
 It also communicates with 'content.js' for any interaction with the DOM
 */
+
 window.onload = function () {
   /*
   when the window is loaded:
@@ -13,8 +14,24 @@ window.onload = function () {
   - adds the "Run Again" button
   */
   chrome.tabs.query({active: true, currentWindow: false}, function(tabs) {
+    let count = [0, 0];
     currentTab = tabs[tabs.length - 1].id;
-    chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "report_back"}, function(html) {
+    chrome.tabs.sendMessage(currentTab, {text: "report_back"}, function(html) {
+      if (html === undefined) {
+        let issueArea = document.getElementById("issues");
+        let div = document.createElement("div");
+        let t = document.createElement("text");
+        let i = document.createElement("i");
+
+        div.setAttribute("id", "refresh");
+        i.setAttribute("class", "fas fa-times-circle");
+        i.setAttribute("id", "problem");
+        t.textContent = "An error has occurred. Try refreshing or opening in a new window.";
+
+        div.appendChild(i);
+        div.appendChild(t);
+        issueArea.appendChild(div);
+      }
       html = html.trim();
       template = document.createElement('template');
       template.innerHTML = html;
@@ -23,15 +40,27 @@ window.onload = function () {
       let num = 1;
       results.forEach(issue => {
         issueArea.appendChild(createIssue(issue.title, issue.charts, issue.description, issue.aria, issue.type, issue.link, num));
-        chrome.tabs.sendMessage(tabs[tabs.length - 1].id, {text: "insert", charts: issue.charts, type: issue.type});
+        chrome.tabs.sendMessage(currentTab, {text: "insert", charts: issue.charts, type: issue.type});
         num += 1;
+        count = trackSummary(issue.charts, issue.type, count);
       });
       if (results.length == 0) {
+        let div = document.createElement("div");
         let t = document.createElement("text");
+        let i = document.createElement("i");
+
+        div.setAttribute("id", "success");
+        i.setAttribute("class", "fas fa-check-circle");
         t.textContent = "All tests passed! Please note that the tests are not comprehensive and you may still have issues.";
-        issueArea.appendChild(t);
+
+        div.appendChild(i);
+        div.appendChild(t);
+        issueArea.appendChild(div);
       }
-    });
+      if (count[0] != 0 && count[1] != 0) {
+        createSummary(count);
+      }
+      });
   });
 
   btn = document.getElementById("runAgainBtn");
@@ -40,6 +69,7 @@ window.onload = function () {
     chrome.windows.create({url: "popup.html", type: "popup", height: 250, width: 200, left: 940, top: 65});
   });
 }
+
 /*
 takes an element and toggles the 'active' class
 */
@@ -173,4 +203,56 @@ function createIssue(title, charts, description, aria, type, link, number) {
   });
 
   return d;
+}
+
+function trackSummary(charts, type, count) {
+  if (type == "error") {
+    count[0] = count[0] + charts.length;
+  } else {
+    count[1] = count[1] + charts.length;
+  }
+  return count;
+}
+
+function createSummary(count) {
+  let p = document.getElementById("overview");
+
+  let i1 = document.createElement("i");
+  let i2 = document.createElement("i");
+  let t1 = document.createElement("text");
+  let t2 = document.createElement("text");
+
+  p.setAttribute("id", "overview");
+  i1.setAttribute("class", "fas fa-times-circle");
+  i1.setAttribute("id", "error");
+  i2.setAttribute("class", "fas fa-exclamation-triangle");
+  i2.setAttribute("id", "warning");
+
+  if(count[0] == 1) {
+    t1.textContent = " " + count[0] + " error ";
+  } else {
+    t1.textContent = " " + count[0] + " errors ";
+  }
+  if(count[1] == 1) {
+    t2.textContent = " " + count[1] + " warning";
+  } else {
+    t2.textContent = " " + count[1] + " warnings";
+  }
+
+  let s1 = document.createElement("span");
+  let s2 = document.createElement("span");
+  let p2 = document.createElement("p");
+
+  s1.setAttribute("class", "hide1");
+  s2.setAttribute("class", "hide2");
+
+  s1.textContent = "WCAG violation";
+  s2.textContent = "Best practices violation";
+
+  p.appendChild(i1);
+  p.appendChild(s1);
+  p.appendChild(t1);
+  p.appendChild(i2);
+  p.appendChild(s2);
+  p.appendChild(t2);
 }

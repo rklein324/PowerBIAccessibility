@@ -17,7 +17,7 @@
     "matches": ["https://app.powerbi.com/*"],
     "js": ["content.js"]
   }],
-    "permissions": ["tabs", "https://app.powerbi.com/*"],
+    "permissions": ["activeTab", "https://app.powerbi.com/*"],
     "background": {
         "scripts": ["background.js"],
         "persistent": false
