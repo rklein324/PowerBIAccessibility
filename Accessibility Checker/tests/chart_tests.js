@@ -10,6 +10,8 @@ const seriesChartsSelector = '.visual-lineChart, .visual-areaChart, .visual-stac
 
 const stackedChartsSelector = '.visual-barChart, .visual-columnChart, .visual-hundredPercentStackedBarChart, .visual-hundredPercentStackedColumnChart, .visual-lineStackedColumnComboChart, .visual-stackedAreaChart';
 
+const categoryLabelSelector = '.visual-funnel, .visual-pieChart, .visual-donutChart, .visual-treemap';
+
 /*------------------
  CHART DICTIONARIES
 ------------------*/
@@ -80,6 +82,14 @@ function selectStackedCharts(dom) {
     return charts;
 }
 
+/*
+returns a list of all charts that have the 'Category Label' option
+*/
+function selectCategoryLabelCharts(dom) {
+    let charts = dom.querySelectorAll(categoryLabelSelector);
+    return charts;
+}
+
 /*--------------
   CHART TESTS
 --------------*/
@@ -120,6 +130,40 @@ function checkStacked(chart) {
         }
     })
     return result;
+}
+
+/*
+checks if chart has labels
+if it does, returns false
+if it does not, returns "Category labels not turned on"
+for pie and donut charts it is umpossible to tell if the label includes the category
+returns instead "Labels not turned on"
+*/
+function checkCategoryLabels(chart) {
+    if (chart.classList.contains('visual-funnel')) {
+        if (chart.querySelector('.axis > g') == null) {
+            return "Category labels not turned on"
+        }
+        return false;
+    }
+    if (chart.classList.contains('visual-treemap')) {
+        if (chart.querySelector('.labels > .majorLabel') == null) {
+            return "Category labels not turned on"
+        }
+        return false;
+    }
+    if (chart.classList.contains('visual-pieChart')) {
+        if (chart.querySelector('.labelGraphicsContext > .label') == null) {
+            return "Labels not turned on"
+        }
+        return false;
+    }
+    if (chart.classList.contains('visual-donutChart')) {
+        if (chart.querySelector('.labelGraphicsContext > .label') == null) {
+            return "Labels not turned on"
+        }
+        return false;
+    }
 }
 
 /*
@@ -191,6 +235,29 @@ function testStacked(dom) {
     return results;
 }
 
+function testCategoryLabels(dom) {
+    // create variables to hold end results and specific issues
+    let results = [];
+    let categoryLabels = {title: "Category Labels Not Used", charts: [], description: "Turn on category(and maybe data) labels. Increases readability. Useful for helping colorblind users.", aria: "No Category Labels Dropdown Information Button", type: "warning", link: "https://www.storytellingwithdata.com/blog/2018/6/26/accessible-data-viz-is-better-data-viz"};
+    // go through charts and add to relevant issues
+    selectCategoryLabelCharts(dom).forEach(chart => {
+        let title = null;
+        let titleNode = chart.closest('visual-container-modern').querySelector('.visualTitle');
+        if (titleNode) {
+            title = titleNode.title;
+        }
+        let result = checkCategoryLabels(chart);
+        if (result) {
+            categoryLabels.charts.push({chart: title, id_num: chart.id});
+        }
+    })
+    // add issues to results variable if applicable
+    if (categoryLabels.charts.length > 0) {
+        results.push(categoryLabels);
+    }
+    return results;
+}
+
 function testTitles(dom) {
     // create variables to hold end results and specific issues
     let results = [];
@@ -216,5 +283,6 @@ function runTests(dom) {
     results = results.concat(testTitles(dom));
     results = results.concat(testSeriesMarkers(dom));
     results = results.concat(testStacked(dom));
+    results = results.concat(testCategoryLabels(dom));
     return results;
 }

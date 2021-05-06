@@ -57,7 +57,7 @@ window.onload = function () {
         div.appendChild(t);
         issueArea.appendChild(div);
       }
-      if (count[0] != 0 && count[1] != 0) {
+      if (count[0] != 0 || count[1] != 0) {
         createSummary(count);
       }
       });
@@ -103,7 +103,10 @@ function drpdwnButton(btn, charts, text, link) {
     let l = document.createElement("li");
     let title = chart.chart;
     if (title == null) {
-      title = "Untitled Chart #" + untitledNum++
+      title = "Untitled Chart #" + untitledNum++;
+    }
+    if (chart.clustered) {
+      title = title + " -> " + chart.clustered;
     }
     l.textContent = title;
     u.appendChild(l);
