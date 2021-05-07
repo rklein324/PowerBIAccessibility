@@ -186,7 +186,7 @@ function testSeriesMarkers(dom) {
     // create variables to hold end results and specific issues
     let results = [];
     let noMarkers = {title: "Markers Are Not Used", charts: [], description: "Line or area plot has multiple series. Use unique markers to differentiate between series. Useful for helping colorblind users.", aria: "Series Without Markers Dropdown Information Button", type: "warning", link: "https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#markers"};
-    let sameMarkers = {title: "Markes Are the Same", charts: [], description: "Line or area plot has multiple series. Use unique markers to differentiate between series. Useful for helping colorblind users.", aria: "Series With Same Markers Dropdown Information Button", type: "warning", link: "https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#markers"};
+    let sameMarkers = {title: "Markers Are the Same", charts: [], description: "Line or area plot has multiple series. Use unique markers to differentiate between series. Useful for helping colorblind users.", aria: "Series With Same Markers Dropdown Information Button", type: "warning", link: "https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#markers"};
     // go through charts and add to relevant issues
     selectSeriesCharts(dom).forEach(chart => {
         let title = null;
@@ -238,7 +238,7 @@ function testStacked(dom) {
 function testCategoryLabels(dom) {
     // create variables to hold end results and specific issues
     let results = [];
-    let categoryLabels = {title: "Category Labels Not Used", charts: [], description: "Turn on category(and maybe data) labels. Increases readability. Useful for helping colorblind users.", aria: "No Category Labels Dropdown Information Button", type: "warning", link: "https://www.storytellingwithdata.com/blog/2018/6/26/accessible-data-viz-is-better-data-viz"};
+    let categoryLabels = {title: "Category Labels Not Used", charts: [], description: "Turn on category (and maybe data) labels. Increases readability. Useful for helping colorblind users.", aria: "No Category Labels Dropdown Information Button", type: "warning", link: "https://www.storytellingwithdata.com/blog/2018/6/26/accessible-data-viz-is-better-data-viz"};
     // go through charts and add to relevant issues
     selectCategoryLabelCharts(dom).forEach(chart => {
         let title = null;
