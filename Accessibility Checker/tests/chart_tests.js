@@ -85,7 +85,7 @@ function checkStacked(chart) {
 checks if chart has labels
 if it does, returns false
 if it does not, returns "Category labels not turned on"
-for pie and donut charts it is umpossible to tell if the label includes the category
+for pie and donut charts, it is impossible to tell if the label includes the category
 returns instead "Labels not turned on"
 */
 function checkCategoryLabels(chart) {
@@ -141,7 +141,7 @@ function checkTitle(chart) {
     -type: the type of issue, either 'error' or 'warning'
     -link: a link to the section of the Best Practices document about this test
    A set of charts is selected using a function from the 'FUNCTIONS TO RETURN SPECIFIC CHARTS' section above
-   Each chart in that list then is tested using the repective test from the 'CHART TESTS' section
+   Each chart in that list then is tested using the respective test from the 'CHART TESTS' section
    If a chart fails a test, it is added to the respective dictionary including the following:
     -chart: the title of the chart if it has one, otherwise it is left null
     -id_num: the id of the chart that was generated when the extension first ran on the report

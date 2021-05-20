@@ -12,7 +12,7 @@ window.onload = function () {
   - adds each issue in results as an issue in issueArea
   - sends the charts with issues to content.js for highlighting
   - adds the "Run Again" button
-  - creates seperate messages if cannot connect to DOM or all tests pass
+  - creates separate messages if cannot connect to DOM or all tests pass
   */
   chrome.tabs.query({active: true, currentWindow: false}, function(tabs) {
     // find id of correct tab
@@ -94,7 +94,8 @@ function toggleActive(element) {
 takes the elements of an issue and updates the content to the dropdown setup
 btn: the button element that holds the entire issue
 charts: an array of all the charts with that issue
-  each chart is a dictionary where the key 'chart' is the title of the chart or 'null' if it doesn't have a title
+  each chart is a dictionary where the key 'chart' has a value of the title of the chart 
+  or 'null' if it doesn't have a title
 text: the text description about the issue
 link: the link to be added to the "More Information" button
 */
