@@ -7,21 +7,21 @@
   * [Overview of Accessibility](#overview-of-accessibility)
   * [Accessibility for Data Visualization](#accessibility-for-data-visualization)
   * [Power BI Settings Options](#power-bi-settings-options)
-* [PowBility Tests - More Information](#powbility-tests---more-information)
-  * [Charts Must Have Descriptive Titles](#charts-must-have-descriptive-titles)
-  * [Charts With Multiple Series Should Use Unique Markers Per Series](#charts-with-multiple-series-should-use-unique-markers-per-series)
-  * [Charts Should (Generally) Not Use Stacked Option](#charts-should-generally-not-use-stacked-option)
-  * [Charts Should (Generally) Use Category Labels](#charts-should-generally-use-category-labels)
-* [PowBility Manual Tests](#powbility-manual-tests)
-  * [Tab Order Must Make Sense](#tab-order-must-make-sense)
-  * [Alt Text Must be Descriptive](#alt-text-must-be-descriptive)
+* [PowBility Tests - More Information](#more-information)
+  * [Charts Must Have Descriptive Titles](#descriptive-titles)
+  * [Charts With Multiple Series Should Use Unique Markers Per Series](#markers)
+  * [Charts Should (Generally) Not Use Stacked Option](#stacked)
+  * [Charts Should (Generally) Use Category Labels](#category-labels)
+* [PowBility Manual Tests](#manual-tests)
+  * [Tab Order Must Make Sense](#tab-order)
+  * [Alt Text Must be Descriptive](#descriptive-alt-text)
 * [Best Practices](#best-practices)
   * [Color](#color)
   * [Text](#text)
   * [Alt Text](#alt-text)
   * [Video/Audio](#videoaudio)
   * [Other](#other)
-* [Additional Resources](#additional-resources)
+* [Resources](#resources)
 
 ## Introduction
 ### What is this document?
@@ -30,7 +30,7 @@ There are two sections directly related to our chrome extension - PowBility:
 * PowBility Tests - More Information: this is directly linked to from the specific tests run through PowBility and contains more information on each test currently included in the extension
 * PowBility Manual Tests: this is information on tests that cannot be automatically run through an extension, but are suggested for PowBility users to read in order to create more accessible Power BI reports  
   
-There is also a section called Best Practices which summarizes all the information we have found on creating accessible Power BI reports and visualizations. Finally, there is an Additional Resources section which includes links to all of the sources we have used in this document and more.
+There is also a section called Best Practices which summarizes all the information we have found on creating accessible Power BI reports and visualizations. Finally, there is a Resources section which includes links to all of the sources we have referenced in this document and more.
 
 ### Errors Vs. Warnings
 For this checker, we use two categories to define accessibility issues: errors and warnings. Errors represent issues that explicitly go against WCAG requirements whereas warnings signify a deviation from the suggested best practices for accessibility defined within this document.
@@ -67,9 +67,16 @@ Another feature that Power BI offers that can increase readability is turning on
 2. Select the X-axis dropdown
 3. Toggle gridlines to the “on” position
 
-## PowBility Tests - More Information
+<h2 id="more-information">
+  PowBility Tests - More Information
+</h2>
+
 ### Errors
-#### Charts Must Have Descriptive Titles
+
+<h4 id="descriptive-titles">
+  Charts Must Have Descriptive Titles
+</h4>
+
 ##### What is the issue?
 Your chart may either not have a title, or the title itself may need to be changed in order to increase clarity for your users.
 ##### Why is it an issue?
@@ -81,7 +88,11 @@ Then you will select the paint roller icon which is the ‘Format’ section of 
 Click on the downward arrow to open the menu, and then enter your text in the textbox below ‘Title text’.
 
 ### Warnings
-#### Charts With Multiple Series Should Use Unique Markers Per Series
+
+<h4 id="markers">
+  Charts With Multiple Series Should Use Unique Markers Per Series
+</h4>
+
 ##### What is the issue?
 If you have a line or area chart, you may have multiple series, meaning lines that are included in the chart. For example, you may have an area chart displaying ‘This Year Sales’ and ‘Last Year Sales’ like the chart shown below:
 Currently, all you see are the lines showing each year’s sales over the months. However, you can add markers to the chart to show each individual data point, as shown below:
@@ -98,7 +109,10 @@ The next step is to make the marker for each series unique. To do that, continue
 This is where the fun part starts. This section allows you to select each series and customize the markers for it. Right below the ‘Customize series’ button is a dropdown menu of all the series you have in your visualization. You can then select the series you want to change out of that dropdown menu.
 From there you can scroll down to ‘Show marker’, make sure that is turned on, and select the marker shape you want for that particular series. There are also additional options, like changing the size of the markers.
 
-#### Charts Should (Generally) Not Use Stacked Option
+<h4 id="stacked">
+  Charts Should (Generally) Not Use Stacked Option
+</h4>
+
 ##### What is the issue?
 Stacked charts are frequently misused, and it is possible that you are using a stacked chart when instead you should be using a clustered one. The difference between the types of charts is shown below:
 Stacked charts should be used to “compare total values across several categories”. Basically, if you ignore the series, the total numbers for each bar or column should still have meaning. For example, if you are looking at the total sales for each month and splitting them up by the category of sale.
@@ -118,7 +132,10 @@ First, you need to decide if it really is an issue. This article gives a great o
 
 Once you know what type of chart you want to use, open the ‘Visualizations’ panel and select the chart you want to change. Then simply click on the chart type you want. Hover over a chart icon to see the name of the type of chart. The stacked chart options are circled in the image below:
 
-#### Charts Should (Generally) Use Category Labels
+<h4 id="category-labels">
+  Charts Should (Generally) Use Category Labels
+</h4>
+
 ##### What is the issue?
 This test is specifically run on funnel charts, pie charts, donut charts, and treemaps. This is because all of these charts have the option to turn on category labels which should, generally, be done. For funnel charts and treemaps this issue will be triggered when category labels are not turned on. For pie charts and donut charts this issue will be triggered when no labels are used, but will not be triggered if some labels are used even if this does not include the category.
 ##### Why is it an issue?
@@ -130,9 +147,16 @@ If you are using a treemap, you may want to also scroll to where it says ‘Data
 If you are using a pie chart or donut chart, scroll down to where it says ‘Detail labels’ and turn that on.
 From there, you can choose your ‘Label style’ which just indicates which type of data is included in the label. You should generally include the ‘Category’ and the ‘Data value’, however this might make the visualization too crowded and hard to read. If this is the case, you may want to use another type of chart.
 
-## PowBility Manual Tests
+<h2 id="manual-tests">
+  PowBility Manual Tests
+</h2>
+
 ### Errors
-#### Tab Order Must Make Sense
+
+<h4 id="tab-order">
+  Tab Order Must Make Sense
+</h4>
+
 ##### What is the issue?
 In Power BI, you can decide the order in which people consume a report when they are using an accessibility tool through the tab order. This order should be the same order you expect your user to visually consume the report in. For example:
 1. Title
@@ -149,7 +173,10 @@ On the selection pane, click on ‘Tab Order’.
 From there, you can either drag elements up and down to change the order, or select an element and use the arrows to move them up or down.
 If there are any decorative elements that should not be included in the tab order, hover over the number next to the element to see the remove icon and then click the icon to hide it from the tab order.
 
-#### Alt Text Must be Descriptive
+<h4 id="descriptive-alt-text">
+  Alt Text Must be Descriptive
+</h4>
+
 ##### What is the issue?
 Alt text is an important way to enhance a user’s understanding of any non-decorative image or visualization when they are using a screen reader, however just the existence of alt text is not enough. The text should be descriptive enough to help a user decide whether or not to “enter” the visualization or skip over it. Even if they do skip over it, the description should also be enough to supplement looking at the visualization.
 ##### Why is it an issue?
@@ -193,22 +220,22 @@ Scroll down to where it says ‘Alt Text’ and type your description in the tex
 * Use white space
 * Use dropdown menus over sliders
 
-## Additional Resources
-* [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/TR/WCAG21/)
-  * [Use of Color](https://www.w3.org/WAI/WCAG21/quickref/#use-of-color)
+## Resources
+1. [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/TR/WCAG21/)
+  *. [Use of Color](https://www.w3.org/WAI/WCAG21/quickref/#use-of-color)
   * [Focus Order](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-focus-order.html)
-* [Power BI Documentation](https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports)
+2. [Power BI Documentation](https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports)
   * [Markers](https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#markers)
   * [Tab Order](https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#tab-order)
   * [Alt Text](https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#alt-text)
   * [Tips and Considerations](https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#tips-and-considerations)
-* [An intro to designing accessible data visualizations](https://fossheim.io/writing/posts/accessible-dataviz-design/)
-* [A Comprehensive Guide to Accessible Data Visualization](https://www.betterment.com/resources/accessible-data-visualization/)
-* [Why Accessibility Is at the Heart of Data Visualization](https://medium.com/nightingale/accessibility-is-at-the-heart-of-data-visualization-64a38d6c505b)
-* [accessible data viz is better data viz](https://www.storytellingwithdata.com/blog/2018/6/26/accessible-data-viz-is-better-data-viz)
-* [Dos and don'ts on designing for accessibility](https://accessibility.blog.gov.uk/2016/09/02/dos-and-donts-on-designing-for-accessibility/)
-* [7 things you can do to make your Power BI dashboards more accessibly compliant](https://www.isoftstoneinc.com/insights/knowledge-leader/powerbi-accessibility-compliance/)
-* [Top 8 Most Common Accessibility Issues to Avoid and Solve](https://www.accessiblemetrics.com/blog/top-8-most-common-accessibility-issues-to-avoid-and-solve/)
-* Stacked Bar Charts
+3. [An intro to designing accessible data visualizations](https://fossheim.io/writing/posts/accessible-dataviz-design/)
+4. [A Comprehensive Guide to Accessible Data Visualization](https://www.betterment.com/resources/accessible-data-visualization/)
+5. [Why Accessibility Is at the Heart of Data Visualization](https://medium.com/nightingale/accessibility-is-at-the-heart-of-data-visualization-64a38d6c505b)
+6. [accessible data viz is better data viz](https://www.storytellingwithdata.com/blog/2018/6/26/accessible-data-viz-is-better-data-viz)
+7. [Dos and don'ts on designing for accessibility](https://accessibility.blog.gov.uk/2016/09/02/dos-and-donts-on-designing-for-accessibility/)
+8. [7 things you can do to make your Power BI dashboards more accessibly compliant](https://www.isoftstoneinc.com/insights/knowledge-leader/powerbi-accessibility-compliance/)
+9. [Top 8 Most Common Accessibility Issues to Avoid and Solve](https://www.accessiblemetrics.com/blog/top-8-most-common-accessibility-issues-to-avoid-and-solve/)
+10. Stacked Bar Charts
   * [Stacked Bars Are the Worst](https://eagereyes.org/techniques/stacked-bars-are-the-worst)
   * [Understanding Stacked Bar Charts: The Worst Or The Best?](https://www.smashingmagazine.com/2017/03/understanding-stacked-bar-charts/) 
