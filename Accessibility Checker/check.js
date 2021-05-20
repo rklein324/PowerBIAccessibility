@@ -6,17 +6,19 @@ It also communicates with 'content.js' for any interaction with the DOM
 window.onload = function () {
   /*
   when the window is loaded:
-  - gets the most recent active tab that is not the popup,
+  - gets the most recent active tab that is not the popup (should be the tab the extension is run on),
   - passes that to content.js, gets the DOM as a string and converts it to a DOM element
   - runs tests and stores in 'results'
   - adds each issue in results as an issue in issueArea
   - sends the charts with issues to content.js for highlighting
   - adds the "Run Again" button
+  - creates seperate messages if cannot connect to DOM or all tests pass
   */
   chrome.tabs.query({active: true, currentWindow: false}, function(tabs) {
-    let count = [0, 0];
+    // find id of correct tab
     currentTab = tabs[tabs.length - 1].id;
     chrome.tabs.sendMessage(currentTab, {text: "report_back"}, function(html) {
+      // create error message if cannot connect to DOM
       if (html === undefined) {
         let issueArea = document.getElementById("issues");
         let div = document.createElement("div");
@@ -31,36 +33,47 @@ window.onload = function () {
         div.appendChild(i);
         div.appendChild(t);
         issueArea.appendChild(div);
-      }
-      html = html.trim();
-      template = document.createElement('template');
-      template.innerHTML = html;
-      let results = runTests(template.content);
-      let issueArea = document.getElementById("issues");
-      let num = 1;
-      results.forEach(issue => {
-        issueArea.appendChild(createIssue(issue.title, issue.charts, issue.description, issue.aria, issue.type, issue.link, num));
-        chrome.tabs.sendMessage(currentTab, {text: "insert", charts: issue.charts, type: issue.type});
-        num += 1;
-        count = trackSummary(issue.charts, issue.type, count);
-      });
-      if (results.length == 0) {
-        let div = document.createElement("div");
-        let t = document.createElement("text");
-        let i = document.createElement("i");
+      } else {
+        // variable to count the number of errors and warnings
+        let count = [0, 0];
 
-        div.setAttribute("id", "success");
-        i.setAttribute("class", "fas fa-check-circle");
-        t.textContent = "All tests passed! Please note that the tests are not comprehensive and you may still have issues.";
+        // creating DOM
+        html = html.trim();
+        template = document.createElement('template');
+        template.innerHTML = html;
+        let results = runTests(template.content);
 
-        div.appendChild(i);
-        div.appendChild(t);
-        issueArea.appendChild(div);
+        // create issues
+        let issueArea = document.getElementById("issues");
+        let num = 1; // count number of issue categories
+        results.forEach(issue => {
+          issueArea.appendChild(createIssue(issue.title, issue.charts, issue.description, issue.aria, issue.type, issue.link, num));
+          chrome.tabs.sendMessage(currentTab, {text: "insert", charts: issue.charts, type: issue.type}); // add highlighting
+          num += 1;
+          count = trackSummary(issue.charts, issue.type, count); // add to count for summary
+        });
+
+        // create success message if all tests pass
+        if (results.length == 0) {
+          let div = document.createElement("div");
+          let t = document.createElement("text");
+          let i = document.createElement("i");
+
+          div.setAttribute("id", "success");
+          i.setAttribute("class", "fas fa-check-circle");
+          t.textContent = "All tests passed! Please note that the tests are not comprehensive and you may still have issues.";
+
+          div.appendChild(i);
+          div.appendChild(t);
+          issueArea.appendChild(div);
+        }
+
+        // create summary
+        if (count[0] != 0 || count[1] != 0) {
+          createSummary(count);
+        }
       }
-      if (count[0] != 0 || count[1] != 0) {
-        createSummary(count);
-      }
-      });
+    });   
   });
 
   btn = document.getElementById("runAgainBtn");
@@ -208,29 +221,48 @@ function createIssue(title, charts, description, aria, type, link, number) {
   return d;
 }
 
+/*
+updates the count of errors and warnings for the summary
+charts: the array of charts that have a specific issue
+type: the type of issue ('error' or 'warning')
+count: an array of the current count of issues [number of charts with errors, number of charts with warnings]
+*/
 function trackSummary(charts, type, count) {
   if (type == "error") {
     count[0] = count[0] + charts.length;
-  } else {
+  } 
+  if (type == "warning") {
     count[1] = count[1] + charts.length;
   }
   return count;
 }
 
+/*
+creates the summary section which includes the number of charts with errors and warnings
+and a hover that shows the definitions of the issue types
+count: an array of the number of issues [number of charts with errors, number of charts with warnings]
+*/
 function createSummary(count) {
   let p = document.getElementById("overview");
 
+  // create the needed elements
   let i1 = document.createElement("i");
   let i2 = document.createElement("i");
   let t1 = document.createElement("text");
   let t2 = document.createElement("text");
+  let s1 = document.createElement("span");
+  let s2 = document.createElement("span");
 
+  // add attributes
   p.setAttribute("id", "overview");
   i1.setAttribute("class", "fas fa-times-circle");
   i1.setAttribute("id", "error");
   i2.setAttribute("class", "fas fa-exclamation-triangle");
   i2.setAttribute("id", "warning");
+  s1.setAttribute("class", "hide1"); // hover visibility is added in CSS
+  s2.setAttribute("class", "hide2"); // hover visibility is added in CSS
 
+  // add text content
   if(count[0] == 1) {
     t1.textContent = " " + count[0] + " error ";
   } else {
@@ -241,17 +273,10 @@ function createSummary(count) {
   } else {
     t2.textContent = " " + count[1] + " warnings";
   }
-
-  let s1 = document.createElement("span");
-  let s2 = document.createElement("span");
-  let p2 = document.createElement("p");
-
-  s1.setAttribute("class", "hide1");
-  s2.setAttribute("class", "hide2");
-
   s1.textContent = "WCAG violation";
   s2.textContent = "Best practices violation";
 
+  // attach all elements
   p.appendChild(i1);
   p.appendChild(s1);
   p.appendChild(t1);

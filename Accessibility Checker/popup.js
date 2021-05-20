@@ -1,3 +1,4 @@
+// opens the main checker window (check.html) when the 'Run' button is clicked
 window.onload = function () {
     btn = document.getElementById("runbtn");
     btn.addEventListener('click', function() {
