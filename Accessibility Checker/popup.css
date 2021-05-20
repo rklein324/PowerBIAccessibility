@@ -29,10 +29,12 @@ hr {
   text-align: center;
   font-size: 7px;
 }
+
 #run {
   text-decoration: none;
   color: white;
 }
+
 #run:hover {
   color: black;
 }

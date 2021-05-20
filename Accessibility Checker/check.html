@@ -1,6 +1,6 @@
+<!-- This is the main popup that displays the issues -->
 <html dir="ltr" lang="en">
     <head>
-        <!-- <meta charset="utf-8" /> -->
         <link rel="stylesheet" type="text/css" href="check.css" />
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -9,11 +9,12 @@
     </head>
     <body>
       <h3>Accessibility Issues</h3>
-      <p id="overview"></p>
-      <div id="issues"></div>
+      <p id="overview"><!-- summary of issues will go here --></p>
+      <div id="issues"><!-- issues will go here --></div>
       <button id ="runAgainBtn" type=button aria-label="Run Checker Again Button">
         Run Again
       </button>
+      <script src="tests/chart_constants.js"></script>
       <script src="tests/chart_tests.js"></script>
       <script src="check.js"></script>
   </body>

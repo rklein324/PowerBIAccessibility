@@ -1,3 +1,4 @@
+// creates initial popup window when extension is run
 chrome.browserAction.onClicked.addListener(function()
 {
   var w = 200;
