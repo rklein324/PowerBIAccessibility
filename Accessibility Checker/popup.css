@@ -7,13 +7,13 @@ body {
 }
 button {
   color: white;
-  background-color: #4B2E83;
+  background-color: black;
   width: 100px;
   height: 26px;
   border-radius: 4px;
   margin-left: 30px;
   margin-top: 32px;
-  border-color: #4B2E83;
+  border-color: black;
 }
 button:hover {
   background: white;
@@ -21,7 +21,7 @@ button:hover {
 }
 
 hr {
-  border: 2px solid #4B2E83;
+  border: 2px solid #43b9ff;
 }
 
 #iconinfo {
