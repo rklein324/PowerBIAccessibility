@@ -1,13 +1,13 @@
 {
     "manifest_version": 2,
 
-    "name": "Accessibility Checker for Power BI",
-    "author": "Rebecca Klein and Erika Sundstrom",
-    "description": "A chrome extension that helps Power BI report creators make their reports more accessible",
-    "version": "1.2",
+    "name": "PowBility",
+    "author": "Rebecca Klein, Erika Sundstrom",
+    "description": "A Power BI Accessibility Checker for Visualizations.",
+    "version": "1.3",
     "browser_action": {
         "default_icon": "capstonelogocolors.png",
-        "default_title": "Accessibility Checker Power BI"
+        "default_title": "PowBility"
     },
     "icons": { "16": "capstonelogocolors.png",
               "48": "capstonelogocolors.png",
