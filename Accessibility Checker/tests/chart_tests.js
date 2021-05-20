@@ -151,8 +151,8 @@ function checkTitle(chart) {
 function testSeriesMarkers(dom) {
     // create variables to hold end results and specific issues
     let results = [];
-    let noMarkers = {title: "Markers Are Not Used", charts: [], description: "Line or area plot has multiple series. Use unique markers to differentiate between series. Useful for helping colorblind users.", aria: "Series Without Markers Dropdown Information Button", type: "warning", link: "https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#markers"};
-    let sameMarkers = {title: "Markers Are the Same", charts: [], description: "Line or area plot has multiple series. Use unique markers to differentiate between series. Useful for helping colorblind users.", aria: "Series With Same Markers Dropdown Information Button", type: "warning", link: "https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#markers"};
+    let noMarkers = {title: "Markers Are Not Used", charts: [], description: "Line or area plot has multiple series. Use unique markers to differentiate between series. Useful for helping colorblind users.", aria: "Series Without Markers Dropdown Information Button", type: "warning", link: "https://rklein324.github.io/PowerBIAccessibility/#markers"};
+    let sameMarkers = {title: "Markers Are the Same", charts: [], description: "Line or area plot has multiple series. Use unique markers to differentiate between series. Useful for helping colorblind users.", aria: "Series With Same Markers Dropdown Information Button", type: "warning", link: "https://rklein324.github.io/PowerBIAccessibility/#markers"};
     // go through charts and add to relevant issues
     selectSeriesCharts(dom).forEach(chart => {
         let title = findTitle(chart);
@@ -177,7 +177,7 @@ function testSeriesMarkers(dom) {
 function testStacked(dom) {
     // create variables to hold end results and specific issues
     let results = [];
-    let stacked = {title: "Stacked Chart is Used", charts: [], description: "Use clustered over stacked charts. Increases readability and trend recognition.", aria: "Stacked Chart Dropdown Information Button", type: "warning", link: "https://eagereyes.org/techniques/stacked-bars-are-the-worst"};
+    let stacked = {title: "Stacked Chart is Used", charts: [], description: "Use clustered over stacked charts. Increases readability and trend recognition.", aria: "Stacked Chart Dropdown Information Button", type: "warning", link: "https://rklein324.github.io/PowerBIAccessibility/#stacked"};
     // go through charts and add to relevant issues
     selectStackedCharts(dom).forEach(chart => {
         let title = findTitle(chart);
@@ -196,7 +196,7 @@ function testStacked(dom) {
 function testCategoryLabels(dom) {
     // create variables to hold end results and specific issues
     let results = [];
-    let categoryLabels = {title: "Category Labels Not Used", charts: [], description: "Turn on category (and maybe data) labels. Increases readability. Useful for helping colorblind users.", aria: "No Category Labels Dropdown Information Button", type: "warning", link: "https://www.storytellingwithdata.com/blog/2018/6/26/accessible-data-viz-is-better-data-viz"};
+    let categoryLabels = {title: "Category Labels Not Used", charts: [], description: "Turn on category (and maybe data) labels. Increases readability. Useful for helping colorblind users.", aria: "No Category Labels Dropdown Information Button", type: "warning", link: "https://rklein324.github.io/PowerBIAccessibility/#category-labels"};
     // go through charts and add to relevant issues
     selectCategoryLabelCharts(dom).forEach(chart => {
         let title = findTitle(chart);
@@ -215,7 +215,7 @@ function testCategoryLabels(dom) {
 function testTitles(dom) {
     // create variables to hold end results and specific issues
     let results = [];
-    let noTitle = {title: "Chart Does Not Have Title", charts: [], description: "Include descriptive titles on all charts. Helps people using screen readers navigate. WCAG requirement.", aria: "Untitled Chart Dropdown Information Button", type: "error", link: "https://www.w3.org/WAI/WCAG21/quickref/#headings-and-labels"};
+    let noTitle = {title: "Chart Does Not Have Title", charts: [], description: "Include descriptive titles on all charts. Helps people using screen readers navigate. WCAG requirement.", aria: "Untitled Chart Dropdown Information Button", type: "error", link: "https://rklein324.github.io/PowerBIAccessibility/#descriptive-titles"};
     // go through charts and add to relevant issues
     selectCharts(dom).forEach(chart => {
         let result = checkTitle(chart);
