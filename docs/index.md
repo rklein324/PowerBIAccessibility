@@ -121,8 +121,9 @@ When a stacked chart is misused, it makes it much harder to compare the magnitud
 Visualizations are all about making it easier for the user to understand your data and the insights you want them to get out of it. When you are making it more difficult for your user, you are making your visualization less accessible, especially for people with cognitive disabilities who need the visualization to be as clear as possible.
 ##### How can I fix it?
 First, you need to decide if it really is an issue. [This article<sup>10b</sup>](https://www.smashingmagazine.com/2017/03/understanding-stacked-bar-charts/) gives a great overview of when to use stacked or clustered charts. If you have decided to change to a clustered chart, you can reference the suggested chart given by the PowBility accessibility checker, or reference the table below.
+
 | Stacked                       | Clustered                       |
-|-------------------------------|---------------------------------|
+| ----------------------------- | ------------------------------- |
 | Stacked Bar Chart             | Clustered Bar Chart             |
 | Stacked Column Chart          | Clustered Column Chart          |
 | 100% Stacked Bar Chart        | Clustered Bar Chart             |
@@ -165,6 +166,7 @@ In Power BI, you can decide the order in which people consume a report when they
 4. Visualization Two
 5. Visualization Two summary
 6. Conclusion
+
 ##### Why is it an issue?
 When a user of your report is using a screen reader, the tab order will be the same order that the screen reader reads out your report to them. Similarly, if a user has a motor impairment and cannot use a mouse, they may use the tab key to navigate through your report in order to select elements and interact with them. Because of this, it is a WCAG requirement[<sup>1b</sup>](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-focus-order.html) that this order is meaningful in order to reduce confusion that would result from an illogical order.
 ##### How can I fix it?
