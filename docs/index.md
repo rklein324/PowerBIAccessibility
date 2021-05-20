@@ -88,7 +88,7 @@ Currently, all you see are the lines showing each year’s sales over the months
 Now there are markers on each series, but they are all circles. The shapes for the different years should also be different, for example a circle and a square:
 
 ##### Why is it an issue?
-If there are no markers used, or the markers are not all unique per series, the only way to differentiate between them is the colors in the legend. This is obviously a problem for people who are colorblind. It is actually a WCAG requirement that “color is not used as the only visual means of conveying information”. This is also recommended in the Power BI documentation.
+If there are no markers used, or the markers are not all unique per series, the only way to differentiate between them is the colors in the legend. This is obviously a problem for people who are colorblind. It is actually a WCAG requirement that “color is not used as the only visual means of conveying information”.
 ##### How can I fix it?
 There are a few steps needed in order to turn on markers and change them to be unique.
 The first step is to select your chart, open the ‘Visualizations’ panel, and select the paint roller icon which is the ‘Format’ section of the panel.
@@ -159,3 +159,56 @@ Most alt text is already handled by Power BI, and even visualizations will have 
 In order to add alt text, select your chart, open the ‘Visualizations’ panel, and select the paint roller icon which is the ‘Format’ section of the panel.
 Then click on the downward arrow next to where it says ‘General’ to open the menu.
 Scroll down to where it says ‘Alt Text’ and type your description in the text box. If you would like to write a dynamic description that is based on the data and will be updated if the data changed, click on the ‘fx’ button.
+
+## Best Practices
+### Color
+* Ensure color contrast between text elements and their background are at least 4.5:1.
+* Ensure color contrast between (interactive) non-decorative non-text elements and their background is at least 3:1. (text size changes rule) (need to consider all states, e.g. hover/focus changes)
+* Avoid using color as the only means of conveying information. Use text or icons to supplement or replace the color.
+* Check that your report page works for users with color vision deficiency.
+* Check the visual using high contrast mode to ensure the colors change appropriately. If the appearance is not high contrast, look for another visual.
+### Text
+* Replace unnecessary jargon or acronyms and use clear language
+* Add descriptive, purposeful titles to charts
+* Add explanatory text as needed to describe your charts and their necessary context (perhaps via textbox or visual header tooltips).
+### Alt Text
+* Ensure alt text is added to all non-decorative visuals on the page.
+* Make sure to put text contents of a textbox in the alt text box so screen readers can read them. If the text doesn’t fit within the alt text character limit, write a summary or highlight an important data point.
+* When using images to call out data points, use alt text to explain what is being called out.
+### Video/Audio
+* Avoid video that automatically starts when the page is rendered.
+* Ensure your video has captions or provide a transcript.
+* Avoid audio that automatically starts when the page is rendered.
+* Provide a transcript for any audio.
+### Other
+* Check the accessible Show Data table for custom visuals. If the information shown is not sufficient, look for another visual.
+* Set tab order and turn off tab order (mark the item as hidden) on any decorative items.
+* Purposefully set the sort order of each visual on the page. The accessible Show Data table shows the data in the sort order you have set on the visual.
+* Avoid using too many decorative shapes to the point where they are distracting.
+* Is key information only accessible through an interaction? If so, rearrange your visuals so they are pre-filtered to make the important conclusion more obvious.
+* Do add default tooltips to charts as ancillary information. It is included in the accessible Show Data table for each visual.
+* If using the Play Axis custom visual, ensure it does not autoplay. Make it obvious that the user must press the play/pause button to start/stop the changing values.
+* Add redundant representations for critical messages
+* Label data directly
+* Use white space
+* Use dropdown menus over sliders
+
+## Additional Resources
+* [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/TR/WCAG21/)
+  * [Use of Color](https://www.w3.org/WAI/WCAG21/quickref/#use-of-color)
+  * [Focus Order](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-focus-order.html)
+* [Power BI Documentation](https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports)
+  * [Markers](https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#markers)
+  * [Tab Order](https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#tab-order)
+  * [Alt Text](https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#alt-text)
+  * [Tips and Considerations](https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#tips-and-considerations)
+* [An intro to designing accessible data visualizations](https://fossheim.io/writing/posts/accessible-dataviz-design/)
+* [A Comprehensive Guide to Accessible Data Visualization](https://www.betterment.com/resources/accessible-data-visualization/)
+* [Why Accessibility Is at the Heart of Data Visualization](https://medium.com/nightingale/accessibility-is-at-the-heart-of-data-visualization-64a38d6c505b)
+* [accessible data viz is better data viz](https://www.storytellingwithdata.com/blog/2018/6/26/accessible-data-viz-is-better-data-viz)
+* [Dos and don'ts on designing for accessibility](https://accessibility.blog.gov.uk/2016/09/02/dos-and-donts-on-designing-for-accessibility/)
+* [7 things you can do to make your Power BI dashboards more accessibly compliant](https://www.isoftstoneinc.com/insights/knowledge-leader/powerbi-accessibility-compliance/)
+* [Top 8 Most Common Accessibility Issues to Avoid and Solve](https://www.accessiblemetrics.com/blog/top-8-most-common-accessibility-issues-to-avoid-and-solve/)
+* Stacked Bar Charts
+  * [Stacked Bars Are the Worst](https://eagereyes.org/techniques/stacked-bars-are-the-worst)
+  * [Understanding Stacked Bar Charts: The Worst Or The Best?](https://www.smashingmagazine.com/2017/03/understanding-stacked-bar-charts/) 
