@@ -121,6 +121,7 @@ When a stacked chart is misused, it makes it much harder to compare the magnitud
 Visualizations are all about making it easier for the user to understand your data and the insights you want them to get out of it. When you are making it more difficult for your user, you are making your visualization less accessible, especially for people with cognitive disabilities who need the visualization to be as clear as possible.
 ##### How can I fix it?
 First, you need to decide if it really is an issue. [This article<sup>10b</sup>](https://www.smashingmagazine.com/2017/03/understanding-stacked-bar-charts/) gives a great overview of when to use stacked or clustered charts. If you have decided to change to a clustered chart, you can reference the suggested chart given by the PowBility accessibility checker, or reference the table below.
+
 | Stacked                       | Clustered                       |
 | ----------------------------- | ------------------------------- |
 | Stacked Bar Chart             | Clustered Bar Chart             |
