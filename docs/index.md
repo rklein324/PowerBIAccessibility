@@ -69,7 +69,7 @@ Another feature that Power BI offers that can increase readability is turning on
 2. Select the X-axis dropdown
 3. Toggle gridlines to the “on” position
 
-![Select format pane](screenshots/gridlines-format-circled.jpg)![Select X-axis dropdown](screenshots/gridlines-axis-circled.jpg)![Toggle gridlines to “on” position](screenshots/gridlines-turnon-circled.jpg)
+![Select format pane](screenshots/gridlines-format-circled.jpg){:height="100px" width="100px"}![Select X-axis dropdown](screenshots/gridlines-axis-circled.jpg)![Toggle gridlines to “on” position](screenshots/gridlines-turnon-circled.jpg)
 
 <h2 id="more-information">
   PowBility Tests - More Information
