@@ -1,9 +1,11 @@
 # PowBility - Power BI Accessibility Checker for Visualizations
 
-## Executive Summary
+PowBility is a Chrome extension that, when run, connects to the DOM of the user's Power BI report and returns a list of accessibility issues. It also connects to a Best Practices document that can further the user's understanding and knowledge of creating accessible visualizations for Power BI. It origonated through a capstone project in the Information School at the University of Washington. For more information about the creation of our project, visit our [website](https://drishtividyarthi.wixsite.com/powbility). To download our extension, search [PowBility](https://chrome.google.com/webstore/detail/powbility/bmanlgpbndmocagmlfhnklacianjjbbe) in the Chrome Store.
+
+## Impact
 With more than 1 billion people with disabilities worldwide, we believe that accessibility is essential and should not be left as an afterthought. Data visualizations are one area where accessibility lags behind. This is especially important for Power BI, a growing platform with over 5 million subscribers. Power BI creators have difficulties building accessible reports due to a lack of accessibility tools & standard guidelines on how to make visualizations accessible. Thus, we developed PowBility: a Chrome extension that enables Power BI report creators to design accessible visualizations. PowBility aims to enable everyone to utilize visualizations to their full potential. Users can download the PowBility Chrome extension, run the checker, note the highlighted and listed accessibility issues, fix the visualizations based on the recommendations, and re-run the checker to ensure that their visualizations are accessible.
 
-## Technical Solution
+## Solution
 ### Front-end -- Basic functionality
 - The Chrome extension permissions used are “tabs” to gain access to the user’s tab history and  URL match to ensure that the extension is only run on URLs that match `https://app.powerbi.com/*`
 When the extension icon is initially clicked, a new window is created for running the checker on the open report from onClicked listener
@@ -53,13 +55,12 @@ This allows for highlighting of the corresponding chart when a particular issue 
 - The main constant that may need to be changed is ‘allChartsSelector’ which holds string selector for all of the charts that should be included in the tests
   - If more charts need to be added, this constant will need to be changed in both files
 
-
-  ![How to change constants image](images/Image1.png)
+![How to change constants image](images/Image1.png)
 
 - The constants are string selectors that use the chart class names in the form ‘.visual-chart’ (example: ‘.visual-barChart’)
   - If these class names are changed, they will need to be updated in any applicable constant
 
-##### Adding a test
+#### Adding a test
 - If a basic test is added, the only changes needed will be in ‘chart_tests.js’ unless another constant is needed
    - If the test will be run on a subset of the chart types not already included in the file ‘chart_constants.js’, then one will need to be added
    - In ‘chart_tests.js’ in the ‘FUNCTIONS TO RETURN SPECIFIC CHARTS’ section, a function that calls that selector will need to be added
@@ -67,11 +68,14 @@ This allows for highlighting of the corresponding chart when a particular issue 
 ![chart_tests.js functions to return specific charts section](images/Image2.png)
 
 - There are then 3 places that need to be changed:
-  1. In the section ‘CHART TESTS’, a function will need to be added that runs the required test on a single chart
+1. In the section ‘CHART TESTS’, a function will need to be added that runs the required test on a single chart
+
 ![chart_tests.js chart tests section](images/Image3.png)
 
-  2. In the section ‘FUNCTIONS TO RUN TESTS’, a function will need to be added that uses the chart selector and the chart test from step 1 to compile the results for that test (see section ‘Back-end -- Grouped tests’ for details or the commented code in the file)
+2. In the section ‘FUNCTIONS TO RUN TESTS’, a function will need to be added that uses the chart selector and the chart test from step 1 to compile the results for that test (see section ‘Back-end -- Functions To Run Tests’ for details or the commented code in the file)
+
 ![chart_tests.js functions to run tests section](images/Image4.png)
 
-  3. Finally, in the section ‘COMPILE RESULTS’, a line will need to be added to the function ‘runTests’ that concatenates the results from the function in step 2 with the rest of the results
+3. Finally, in the section ‘COMPILE RESULTS’, a line will need to be added to the function ‘runTests’ that concatenates the results from the function in step 2 with the rest of the results
+
 ![chart_tests.js compile results section](images/Image5.png)
