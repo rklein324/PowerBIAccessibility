@@ -75,5 +75,3 @@ This allows for highlighting of the corresponding chart when a particular issue 
 
   3. Finally, in the section ‘COMPILE RESULTS’, a line will need to be added to the function ‘runTests’ that concatenates the results from the function in step 2 with the rest of the results
 ![chart_tests.js compile results section](images/Image5.png)
-
-## Next Steps
