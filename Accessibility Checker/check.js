@@ -55,16 +55,36 @@ window.onload = function () {
 
         // create success message if all tests pass
         if (results.length == 0) {
+          // create the needed elements
           let div = document.createElement("div");
-          let t = document.createElement("text");
           let i = document.createElement("i");
-
+          let t = document.createElement("text");
+          let t1 = document.createElement("text");
+          let t2 = document.createElement("text");
+          let a1 = document.createElement("a");
+          let a2 = document.createElement("a");
+ 
+          // set attributes
           div.setAttribute("id", "success");
           i.setAttribute("class", "fas fa-check-circle");
-          t.textContent = "All tests passed! Please note that the tests are not comprehensive and you may still have issues.";
+          a1.setAttribute("href", "https://rklein324.github.io/PowerBIAccessibility/");
+          a1.setAttribute("target", "_blank");
+          a2.setAttribute("href", "https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports")
+          a2.setAttribute("target", "_blank");
 
+          // add text content
+          t1.textContent = "All tests passed! We recommend that you check further guidelines in our ";
+          a1.textContent = "best practices document";
+          t2.textContent = " for visualization accessibility and the latest ";
+          a2.textContent = "Microsoft accessibility guidelines.";
+
+          // attach all elements to issue area
           div.appendChild(i);
           div.appendChild(t);
+          t.appendChild(t1);
+          t.appendChild(a1);
+          t.appendChild(t2);
+          t.appendChild(a2);
           issueArea.appendChild(div);
         }
 
