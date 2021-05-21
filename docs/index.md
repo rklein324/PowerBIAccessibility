@@ -59,7 +59,7 @@ One feature that Power BI offers is turning on category and data labels. This ca
 3. Toggle data labels to the “on” position
 4. Toggle customize labels to the “on” position
 
-![Select format pane](screenshots/gridlines-format-circled.jpg)![Toggle data labels to “on” position](screenshots/data-labels-circled.jpg)![Toggle customize labels to “on” position](screenshots/data-labels-customize-circled.jpg)
+<img src="screenshots/gridlines-format-circled.jpg" height="300px"/> <img src="screenshots/data-labels-circled.jpg" height="300px"/> <img src="screenshots/data-labels-customize-circled.jpg" height="300px"/>
 
 #### Gridlines
 Another feature that Power BI offers that can increase readability is turning on gridlines.This can help readers track and read the information easier. It is important to make sure that the color of the gridlines is easily visible against the background color of the visualization and that the right amount of gridlines are used. Too many gridlines can make the visual too busy to look at and too little won’t provide the necessary information. In general, it is typically best to sort gridlines by value, time/numerical sequences, and categorical sequences.
@@ -69,7 +69,7 @@ Another feature that Power BI offers that can increase readability is turning on
 2. Select the X-axis dropdown
 3. Toggle gridlines to the “on” position
 
-![Select format pane](screenshots/gridlines-format-circled.jpg){:height="100px" width="100px"}![Select X-axis dropdown](screenshots/gridlines-axis-circled.jpg)![Toggle gridlines to “on” position](screenshots/gridlines-turnon-circled.jpg)
+<img src="screenshots/gridlines-format-circled.jpg" height="300px"/> <img src="screenshots/gridlines-axis-circled.jpg" height="300px"/> <img src="screenshots/gridlines-turnon-circled.jpg" height="300px"/>
 
 <h2 id="more-information">
   PowBility Tests - More Information
@@ -83,21 +83,21 @@ Another feature that Power BI offers that can increase readability is turning on
 
 ##### What is the issue?
 Your chart may either not have a title, or the title itself may need to be changed in order to increase clarity for your users.
+
 ##### Why is it an issue?
 Titles are important for multiple reasons. One is that people who use screen readers will hear the title and type of visualization (as well as the descriptive alt text) as a preview of the visualization[<sup>2a</sup>](https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#alt-text). This information is what they use when deciding whether or not to “enter” the visualization or skip over it. Titles are also important to help people with cognitive disabilities understand what they are looking at[<sup>7</sup>](https://accessibility.blog.gov.uk/2016/09/02/dos-and-donts-on-designing-for-accessibility/). Even if you do not have a disability, clear titles are an important way to orient your users and direct them to what information they should get out of your visualization.
+
 ##### How can I fix it?
 First you need to decide on what your title should be. Titles shouldn’t use jargon or acronyms where avoidable[<sup>2d</sup>](https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#all-visuals). They should also clearly define the purpose of your visualization, and possibly what the major takeaway is[<sup>4</sup>](https://www.betterment.com/resources/accessible-data-visualization/). The insights you want your audience to get from your visualization should be included in the alt text and possibly a summary of your chart below it. When it comes to designing for accessibility, the most important thing is to have all the information you want your user to understand available in multiple ways. This means graphically, through text, audio, tooltips, alt text, and more. In this case, the title is an important textual element to increase understanding, so make sure it is as clear as possible.
-The second step is to actually add the title in Power BI. In order to do this, you will need to select the visualization and go into the ‘Visualizations’ panel.
 
-![Select format pane](screenshots/titles-visualization-panel-circled.jpg)
+The second step is to actually add the title in Power BI. In order to do this, you will need to:
 
-Then you will select the paint roller icon which is the ‘Format’ section of the panel and scroll down to where it says ‘Title’. If it says ‘Off’ next to ‘Title’, click the switch to turn it on.
+1. Select the visualization and go into the ‘Visualizations’ panel.
+2. Select the paint roller icon which is the ‘Format’ section of the panel and scroll down to where it says ‘Title’. 
+3. If it says ‘Off’ next to ‘Title’, click the switch to turn it on.
+4. Click on the downward arrow to open the menu, and then enter your text in the textbox below ‘Title text’.
 
-![Turn on 'Title'](screenshots/titles-turnon-circled.jpg)
-
-Click on the downward arrow to open the menu, and then enter your text in the textbox below ‘Title text’.
-
-![Open menu and enter text](screenshots/titles-open-circled.jpg)
+<img src="screenshots/titles-visualization-panel-circled.jpg" height="300px"/> <img src="screenshots/titles-turnon-circled.jpg" height="300px"/> <img src="screenshots/titles-open-circled.jpg" height="300px"/>
 
 ### Warnings
 
@@ -108,43 +108,36 @@ Click on the downward arrow to open the menu, and then enter your text in the te
 ##### What is the issue?
 If you have a line or area chart, you may have multiple series, meaning lines that are included in the chart. For example, you may have an area chart displaying ‘This Year Sales’ and ‘Last Year Sales’ like the chart shown below:
 
-![Line chart with no markers](screenshots/no-markers.png)
+<img src="screenshots/no-markers.png" width="400px"/>
 
 Currently, all you see are the lines showing each year’s sales over the months. However, you can add markers to the chart to show each individual data point, as shown below:
 
-![Line chart with the same markers for each series](screenshots/same-markers.png)
+<img src="screenshots/same-markers.png" width="400px"/>
 
 Now there are markers on each series, but they are all circles. The shapes for the different years should also be different, for example a circle and a square:
 
-![Line chart with different markers for each series](screenshots/diff-markers.png)
+<img src="screenshots/diff-markers.png" width="400px"/>
 
 ##### Why is it an issue?
 If there are no markers used, or the markers are not all unique per series, the only way to differentiate between them is the colors in the legend. This is obviously a problem for people who are colorblind. It is actually a WCAG requirement that “color is not used as the only visual means of conveying information”[<sup>1a</sup>](https://www.w3.org/WAI/WCAG21/quickref/#use-of-color). This is also recommended in the Power BI documentation[<sup>2a</sup>](https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#markers).
+
 ##### How can I fix it?
-There are a few steps needed in order to turn on markers and change them to be unique.
-The first step is to select your chart, open the ‘Visualizations’ panel, and select the paint roller icon which is the ‘Format’ section of the panel.
+There are a few steps needed in order to turn on markers and change them to be unique:
 
-![Select format pane](screenshots/markers-visualizationpanel-circled.jpg)
+1. Select your chart, open the ‘Visualizations’ panel, and select the paint roller icon which is the ‘Format’ section of the panel.
+2. Scroll down to where it says “Shapes” and click the down arrow to open it.
 
-Next, scroll down to where it says “Shapes” and click the down arrow to open it.
+<img src="screenshots/markers-visualizationpanel-circled.jpg" height="200px"/> <img src="screenshots/markers-shapes-circled.jpg" height="200px"/> 
 
-![Open shapes menu](screenshots/markers-shapes-circled.jpg)
+3. Scroll down that menu to where it says ‘Show marker’ and make sure that is turned on.
+4. In order to make the marker for each series unique, continue scrolling down the ‘Shapes’ menu until you get to where it says ‘Customize series’ and make sure that is also turned on.
 
-Then scroll down that menu to where it says ‘Show marker’ and make sure that is turned on.
+<img src="screenshots/markers-turnon-circled.jpg" height="200px"/> <img src="screenshots/markers-series-circled.jpg" height="200px"/> 
 
-![Turn on 'Show marker'](screenshots/markers-turnon-circled.jpg)
+5. This is where the fun part starts. This section allows you to select each series and customize the markers for it. Right below the ‘Customize series’ button is a dropdown menu of all the series you have in your visualization. You can then select the series you want to change out of that dropdown menu.
+6. From there you can scroll down to ‘Show marker’, make sure that is turned on, and select the marker shape you want for that particular series. There are also additional options, like changing the size of the markers.
 
-The next step is to make the marker for each series unique. To do that, continue scrolling down the ‘Shapes’ menu until you get to where it says ‘Customize series’ and make sure that is also turned on.
-
-![Turn on 'Customize series'](screenshots/markers-series-circled.jpg)
-
-This is where the fun part starts. This section allows you to select each series and customize the markers for it. Right below the ‘Customize series’ button is a dropdown menu of all the series you have in your visualization. You can then select the series you want to change out of that dropdown menu.
-
-![Select series from dropdown list](screenshots/markers-select-circled.jpg)
-
-From there you can scroll down to ‘Show marker’, make sure that is turned on, and select the marker shape you want for that particular series. There are also additional options, like changing the size of the markers.
-
-![Turn on 'Show marker' and select marker shape](screenshots/markers-change-circled.jpg)
+<img src="screenshots/markers-select-circled.jpg" height="200px"/> <img src="screenshots/markers-change-circled.jpg" height="200px"/>
 
 <h4 id="stacked">
   Charts Should (Generally) Not Use Stacked Option
@@ -153,12 +146,14 @@ From there you can scroll down to ‘Show marker’, make sure that is turned on
 ##### What is the issue?
 Stacked charts are frequently misused, and it is possible that you are using a stacked chart when instead you should be using a clustered one. The difference between the types of charts is shown below:
 
-![Clustered column chart](screenshots/clustered-col.png)![Stacked column chart](screenshots/stacked-col.png)
+<img src="screenshots/clustered-col.png" height="150px"/> <img src="screenshots/stacked-col.png" height="150px"/>
 
 Stacked charts should be used to “compare total values across several categories”[<sup>10b</sup>](https://www.smashingmagazine.com/2017/03/understanding-stacked-bar-charts/). Basically, if you ignore the series, the total numbers for each bar or column should still have meaning. For example, if you are looking at the total sales for each month and splitting them up by the category of sale.
+
 ##### Why is it an issue?
 When a stacked chart is misused, it makes it much harder to compare the magnitude of the difference between series. For example, in the stacked column chart above, it is difficult to tell if the total sales from June was higher or lower this year as compared to last year. In the clustered column chart, we can see that it was lower. We can also see that the sales in March this year were about 75% of the sales in March last year.
 Visualizations are all about making it easier for the user to understand your data and the insights you want them to get out of it. When you are making it more difficult for your user, you are making your visualization less accessible, especially for people with cognitive disabilities who need the visualization to be as clear as possible.
+
 ##### How can I fix it?
 First, you need to decide if it really is an issue. [This article<sup>10b</sup>](https://www.smashingmagazine.com/2017/03/understanding-stacked-bar-charts/) gives a great overview of when to use stacked or clustered charts. If you have decided to change to a clustered chart, you can reference the suggested chart given by the PowBility accessibility checker, or reference the table below.
 
@@ -173,7 +168,7 @@ First, you need to decide if it really is an issue. [This article<sup>10b</sup>]
 
 Once you know what type of chart you want to use, open the ‘Visualizations’ panel and select the chart you want to change. Then simply click on the chart type you want. Hover over a chart icon to see the name of the type of chart. The stacked chart options are circled in the image below:
 
-![Charts in Power BI with stacked options circled](screenshots/stacked-charts.jpg)
+<img src="screenshots/stacked-charts.jpg" height="250px"/>
 
 <h4 id="category-labels">
   Charts Should (Generally) Use Category Labels
@@ -182,30 +177,27 @@ Once you know what type of chart you want to use, open the ‘Visualizations’ 
 ##### What is the issue?
 This test is specifically run on funnel charts, pie charts, donut charts, and treemaps. This is because all of these charts have the option to turn on category labels which should, generally, be done. For funnel charts and treemaps this issue will be triggered when category labels are not turned on. For pie charts and donut charts this issue will be triggered when no labels are used, but will not be triggered if some labels are used even if this does not include the category.
 
-![Category label menu in Power BI format pane](screenshots/category-label.png)
+<img src="screenshots/category-label.png" height="50px"/>
 
 ##### Why is it an issue?
 Category labels, as well as data labels, are a way to directly connect the information to the spot on the visualization that represents it. Without these labels, you may be relying on a legend which means that the information is only displayed through color which is inaccessible for colorblind or visually imparied users. With funnel charts in particular, there is no legend and category labels equate to a labeled categorical axis which is necessary to have an understanding of what the data represents. Labeling data directly also reduces the cognitive load for your users[<sup>6</sup>](https://www.storytellingwithdata.com/blog/2018/6/26/accessible-data-viz-is-better-data-viz).
+
 ##### How can I fix it?
 There are slightly different steps depending on the type of chart you are using, however the first step is the same. Select your chart, open the ‘Visualizations’ panel, and select the paint roller icon which is the ‘Format’ section of the panel.
 
-![Select format pane](screenshots/labels-format-circled.jpg)
+<img src="screenshots/labels-format-circled.jpg" height="200px"/>
 
 If you are using a funnel chart or treemap, scroll down to where it says ‘Category labels’ and turn them on.
 
-![Turn on 'Category labels'](screenshots/labels-categoryon-circled.jpg)
+<img src="screenshots/labels-categoryon-circled.jpg" height="200px"/>
 
 If you are using a treemap, you may want to also scroll to where it says ‘Data labels’ and turn those on as well. This will show the numerical value associated with each section in the treemap.
 
-![Turn on 'Data labels'](screenshots/labels-dataon-circled.jpg)
+<img src="screenshots/labels-dataon-circled.jpg" height="200px"/>
 
-If you are using a pie chart or donut chart, scroll down to where it says ‘Detail labels’ and turn that on.
+If you are using a pie chart or donut chart, scroll down to where it says ‘Detail labels’ and turn that on. From there, you can choose your ‘Label style’ which just indicates which type of data is included in the label. You should generally include the ‘Category’ and the ‘Data value’, however this might make the visualization too crowded and hard to read. If this is the case, you may want to use another type of chart.
 
-![Turn on 'Detail labels'](screenshots/labels-detailson-circled.jpg)
-
-From there, you can choose your ‘Label style’ which just indicates which type of data is included in the label. You should generally include the ‘Category’ and the ‘Data value’, however this might make the visualization too crowded and hard to read. If this is the case, you may want to use another type of chart.
-
-![Select the data included from the menu](screenshots/labels-detailtype-circled.jpg)
+<img src="screenshots/labels-detailson-circled.jpg" height="250px"/> <img src="screenshots/labels-detailtype-circled.jpg" height="200px"/>
 
 <h2 id="manual-tests">
   PowBility Manual Tests
@@ -228,22 +220,16 @@ In Power BI, you can decide the order in which people consume a report when they
 
 ##### Why is it an issue?
 When a user of your report is using a screen reader, the tab order will be the same order that the screen reader reads out your report to them. Similarly, if a user has a motor impairment and cannot use a mouse, they may use the tab key to navigate through your report in order to select elements and interact with them. Because of this, it is a WCAG requirement[<sup>1b</sup>](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-focus-order.html) that this order is meaningful in order to reduce confusion that would result from an illogical order.
+
 ##### How can I fix it?
-To view the current tab order, go to ‘View’ and turn on the ‘Selection’ pane.
+To view the current tab order:
 
-![Select 'Selection' pane](screenshots/tab-selectionon-circled.jpg)
+1. Go to ‘View’ and turn on the ‘Selection’ pane.
+2. Click on ‘Tab Order’.
+3. Either drag elements up and down to change the order, or select an element and use the arrows to move them up or down.
+4. If there are any decorative elements that should not be included in the tab order, hover over the number next to the element to see the remove icon and then click the icon to hide it from the tab order.
 
-On the selection pane, click on ‘Tab Order’.
-
-![Select 'Tab Order'](screenshots/tab-order-circled.jpg)
-
-From there, you can either drag elements up and down to change the order, or select an element and use the arrows to move them up or down.
-
-![Use arrows or drag to change order](screenshots/tab-order-change-circled.jpg)
-
-If there are any decorative elements that should not be included in the tab order, hover over the number next to the element to see the remove icon and then click the icon to hide it from the tab order.
-
-![Hide elements from tab order](screenshots/tab-remove-circled.jpg)
+<img src="screenshots/tab-selectionon-circled.jpg" height="290px"/> <img src="screenshots/tab-order-circled.jpg" height="290px"/> <img src="screenshots/tab-order-change-circled.jpg" height="290px"/> <img src="screenshots/tab-remove-circled.jpg" height="290px"/>
 
 <h4 id="descriptive-alt-text">
   Alt Text Must be Descriptive
@@ -251,21 +237,18 @@ If there are any decorative elements that should not be included in the tab orde
 
 ##### What is the issue?
 Alt text is an important way to enhance a user’s understanding of any non-decorative image or visualization when they are using a screen reader, however just the existence of alt text is not enough. The text should be descriptive enough to help a user decide whether or not to “enter” the visualization or skip over it. Even if they do skip over it, the description should also be enough to supplement looking at the visualization.
+
 ##### Why is it an issue?
 For people who are visually impared and using screen readers, text is (generally) the only form of access they have to anything online. Screen readers will read any of the text directly on the page as well as any alt text connected to an element. This makes alt text the main way to make a page accessible to visually impaired users. This is especially important for visualizations, because visualizations are difficult to understand just by hearing the data points used. Visualizations are meant to enhance a user's understanding of the data and encourage specific insights in their viewers. Bad alt text can mean that a user who is unable to view the visualization will not get that same information.
+
 ##### How can I fix it?
 Most alt text is already handled by Power BI, and even visualizations will have the title and type of chart automatically included in it’s alt text[<sup>2c</sup>](https://docs.microsoft.com/en-us/power-bi/create-reports/desktop-accessibility-creating-reports#alt-text). The alt text you need to add is in addition to this which has a limit of 250 characters. This alt text should be a supplement to the title if you are including a text summary along with the visualization, or be a summary of the major insights you want your user to get.
-In order to add alt text, select your chart, open the ‘Visualizations’ panel, and select the paint roller icon which is the ‘Format’ section of the panel.
+In order to add alt text:
+1. Select your chart, open the ‘Visualizations’ panel, and select the paint roller icon which is the ‘Format’ section of the panel.
+2. Click on the downward arrow next to where it says ‘General’ to open the menu.
+3. Scroll down to where it says ‘Alt Text’ and type your description in the text box. If you would like to write a dynamic description that is based on the data and will be updated if the data changed, click on the ‘fx’ button.
 
-![Select format pane](screenshots/gridlines-format-circled.jpg)
-
-Then click on the downward arrow next to where it says ‘General’ to open the menu.
-
-![Open 'General' menu](screenshots/general-circled.jpg)
-
-Scroll down to where it says ‘Alt Text’ and type your description in the text box. If you would like to write a dynamic description that is based on the data and will be updated if the data changed, click on the ‘fx’ button.
-
-![Enter text](screenshots/alt-text-circled.jpg)
+<img src="screenshots/gridlines-format-circled.jpg" height="300px"/> <img src="screenshots/general-circled.jpg" height="300px"/> <img src="screenshots/alt-text-circled.jpg" height="300px"/>
 
 ## Best Practices
 ### Color
@@ -274,19 +257,23 @@ Scroll down to where it says ‘Alt Text’ and type your description in the tex
 * Avoid using color as the only means of conveying information; use text or icons to supplement or replace the color<sup>2d, 3, 8</sup>
 * Check that your report page works for users with color vision deficiency<sup>2d, 3, 6, 8</sup>
 * Check the visual using high contrast mode to ensure the colors change appropriately; if the appearance is not high contrast, look for another visual<sup>2d</sup>
+
 ### Text
 * Replace unnecessary jargon or acronyms and use clear language<sup>2d, 3, 8</sup>
 * Add descriptive, purposeful titles to charts<sup>2d, 4, 6</sup>
 * Add explanatory text as needed to describe your charts and their necessary context (perhaps via textbox or visual header tooltips)<sup>2d, 3, 4</sup>
+
 ### Alt Text
 * Ensure alt text is added to all non-decorative visuals on the page<sup>2d, 4, 6, 9</sup>
 * Make sure to put text contents of a textbox in the alt text box so screen readers can read them; if the text doesn’t fit within the alt text character limit, write a summary or highlight an important data point<sup>2d</sup>
 * When using images to call out data points, use alt text to explain what is being called out<sup>2d</sup>
+
 ### Video/Audio
 * Avoid video that automatically starts when the page is rendered<sup>2d</sup>
 * Ensure your video has captions or provide a transcript<sup>2d</sup>
 * Avoid audio that automatically starts when the page is rendered<sup>2d</sup>
 * Provide a transcript for any audio<sup>2d</sup>
+
 ### Other
 * Check the accessible Show Data table for custom visuals. If the information shown is not sufficient, look for another visual<sup>2d</sup>
 * Set tab order and turn off tab order (mark the item as hidden) on any decorative items<sup>2d, 8</sup>
