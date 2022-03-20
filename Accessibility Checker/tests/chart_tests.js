@@ -121,7 +121,7 @@ if it does, returns false
 if it does not, returns "Chart does not have title"
 */
 function checkTitle(chart) {
-    if (chart.closest('visual-container-modern').querySelector('.visualTitle') == null) {
+    if (chart.closest('visual-container').querySelector('.visualTitle') == null) {
         return "Chart does not have title"
     }
     return false;
@@ -255,7 +255,7 @@ function runTests(dom) {
 
 function findTitle(chart) {
     let title = null;
-    let titleNode = chart.closest('visual-container-modern').querySelector('.visualTitle');
+    let titleNode = chart.closest('visual-container').querySelector('.visualTitle');
     if (titleNode) {
         title = titleNode.title;
     }

@@ -4,7 +4,7 @@
     "name": "PowBility",
     "author": "Rebecca Klein, Erika Sundstrom",
     "description": "A Power BI Accessibility Checker for Visualizations.",
-    "version": "1.5",
+    "version": "1.6",
     "browser_action": {
         "default_icon": "capstonelogocolors.png",
         "default_title": "PowBility"
